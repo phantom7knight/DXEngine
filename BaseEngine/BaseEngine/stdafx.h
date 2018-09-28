@@ -24,6 +24,7 @@ using namespace DirectX;
 #include "systemclass.h"
 #include "graphicsclass.h"
 #include "inputclass.h"
+#include "d3dclass.h"
 
 
 //Constants
