@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "LightShaderClass.h"
+//#include "LightShaderClass.h"
 
 LightShaderClass::LightShaderClass()
 {
