@@ -37,6 +37,11 @@ bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, in
 	m_textureHeight = textureHeight;
 	m_textureWidth = textureWidth;
 
+	//====================================================================================
+	//We create an array of 2D textures to which is used for diferred shader
+	//====================================================================================
+
+
 	ZeroMemory(&textureDesc, sizeof(textureDesc));
 
 	textureDesc.Height = textureHeight;
@@ -51,6 +56,8 @@ bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, in
 	textureDesc.CPUAccessFlags = 0;
 	textureDesc.MiscFlags = 0; //D3D11_RESOURCE_MISC_GENERATE_MIPS
 
+
+	
 	for (i = 0; i < Buffer_Count; ++i)
 	{
 		result = device->CreateTexture2D(&textureDesc, NULL, &m_renderTargetTextureArray[i]);
@@ -61,9 +68,45 @@ bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, in
 		}
 	}
 
+	//====================================================================================
+	//We create render target views to access the render target textures
+	//====================================================================================
+	
 	renderTargetViewDesc.Format = textureDesc.Format;
 	renderTargetViewDesc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
 	renderTargetViewDesc.Texture2D.MipSlice = 0;
+
+	for (i = 0; i < Buffer_Count; ++i)
+	{
+		result = device->CreateRenderTargetView(m_renderTargetTextureArray[i], &renderTargetViewDesc, &m_renderTargetViewArray[i]);
+
+		if (FAILED(result))
+		{
+			return false;
+		}
+	}
+
+	//====================================================================================
+	//We create shader resource views for shaders to access render target textures
+	//====================================================================================
+
+	shaderResourceViewDesc.Format = textureDesc.Format;
+	shaderResourceViewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+	shaderResourceViewDesc.Texture2D.MostDetailedMip = 0;
+	shaderResourceViewDesc.Texture2D.MipLevels = 1;
+
+	for (i = 0; i < Buffer_Count; ++i)
+	{
+		result = device->CreateRenderTargetView(m_renderTargetTextureArray[i], &renderTargetViewDesc, &m_renderTargetViewArray[i]);
+
+		if (FAILED(result))
+		{
+			return false;
+		}
+	}
+
+
+
 
 
 	return true;
