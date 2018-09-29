@@ -38,23 +38,25 @@ struct PixelInputType
 PixelInputType LightVertexShader(VertexInputType input)
 {
 	PixelInputType output;
-	float3 worldPostion;
+	float4 worldPostion;
 
 	input.position.w = 1.0f;
 
-	output.position = mul(input.position , worldMatrix);
+	output.position = mul(input.position ,  worldMatrix);
 	output.position = mul(output.position , viewMatrix);
 	output.position = mul(output.position , projectionMatrix);
+	
+	output.tex - input.tex;
+
+	output.normal = mul(input.normal, (float3x3)worldMatrix);
+	output.normal = normalize(output.normal);
 
 	worldPostion = mul(input.position , worldMatrix);
 	output.viewDirection = cameraPostion.xyz - worldPostion.xyz;
 
 	output.viewDirection = normalize(output.viewDirection);
 
-	output.tex - input.tex;
 
-	output.normal = mul(input.normal, (float3x3)worldMatrix);
-	output.normal = normalize(output.normal);
 
 	return output;
 

@@ -95,11 +95,11 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 
 
 	//We set the  color and the light direction
-	m_Light->SetDiffuseColor(1.0f, 0.0f, 0.5f, 1.0f);
+	m_Light->SetDiffuseColor(1.0f, 0.0f, 1.0f, 1.0f);
 	m_Light->SetDirection(0.0f, 0.0f, 1.0f);
-	m_Light->SetAmbientColor(1.0f, 0.0f, 0.5f, 1.0f);
-	m_Light->SetSpecularColor(1.0f, 1.0f, 1.0f, 1.0f);
-	m_Light->SetSpecularPower(32.0f);
+	m_Light->SetAmbientColor(1.0f, 0.0f, 0.0f, 1.0f);
+	m_Light->SetSpecularColor(1.0f, 0.0f, 1.0f, 1.0f);
+	m_Light->SetSpecularPower(64.0f);
 	//m_Light->SetDirection(LightPos.x, LightPos.y, LightPos.z);
 	
 
