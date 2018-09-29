@@ -45,16 +45,16 @@
     <ClCompile Include="textureclass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\d3dclass.cpp">
+    <ClCompile Include="LightClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\LightClass.cpp">
+    <ClCompile Include="LightShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\LightShaderClass.cpp">
+    <ClCompile Include="d3dclass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\stdafx.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,34 +86,14 @@
     <ClInclude Include="textureclass.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\LightClass.h">
+    <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\LightShaderClass.h">
+    <ClInclude Include="LightShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\stdafx.h">
+    <ClInclude Include="LightClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\Light.ps">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\Light.vs">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\texture.ps">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\texture.vs">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\color.ps">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\color.vs">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
   </ItemGroup>
 </Project>

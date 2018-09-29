@@ -121,46 +121,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\d3dclass.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\LightClass.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\LightShaderClass.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\stdafx.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    <ClCompile Include="cameraclass.cpp" />
+    <ClCompile Include="colorshaderclass.cpp" />
+    <ClCompile Include="d3dclass.cpp" />
+    <ClCompile Include="graphicsclass.cpp" />
+    <ClCompile Include="inputclass.cpp" />
+    <ClCompile Include="LightClass.cpp" />
+    <ClCompile Include="LightShaderClass.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="modelclass.cpp" />
+    <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="cameraclass.cpp" />
-    <ClCompile Include="colorshaderclass.cpp" />
-    <ClCompile Include="graphicsclass.cpp" />
-    <ClCompile Include="inputclass.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="modelclass.cpp" />
     <ClCompile Include="systemclass.cpp" />
     <ClCompile Include="textureclass.cpp" />
     <ClCompile Include="textureshaderclass.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\LightClass.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\LightShaderClass.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\stdafx.h" />
     <ClInclude Include="cameraclass.h" />
     <ClInclude Include="colorshaderclass.h" />
     <ClInclude Include="d3dclass.h" />
     <ClInclude Include="graphicsclass.h" />
     <ClInclude Include="inputclass.h" />
+    <ClInclude Include="LightClass.h" />
+    <ClInclude Include="LightShaderClass.h" />
     <ClInclude Include="modelclass.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="systemclass.h" />
     <ClInclude Include="textureclass.h" />
     <ClInclude Include="textureshaderclass.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\color.ps" />
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\color.vs" />
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\Light.ps" />
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\Light.vs" />
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\texture.ps" />
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\texture.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
