@@ -97,22 +97,22 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\texture.vs">
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\Light.ps">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\color.ps">
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\Light.vs">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\color.vs">
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\texture.ps">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\Light.ps">
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\texture.vs">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\Light.vs">
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\color.ps">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\texture.ps">
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\color.vs">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>

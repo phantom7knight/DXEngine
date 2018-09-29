@@ -155,12 +155,12 @@
     <ClInclude Include="textureshaderclass.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\color.ps" />
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\color.vs" />
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\Light.ps" />
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\Light.vs" />
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\texture.ps" />
-    <None Include="..\..\..\..\..\..\Semester%27s\3rd sem\CS 560\BaseEngine\BaseEngine\BaseEngine\data\Shaders\texture.vs" />
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\color.ps" />
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\color.vs" />
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\Light.ps" />
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\Light.vs" />
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\texture.ps" />
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\texture.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
