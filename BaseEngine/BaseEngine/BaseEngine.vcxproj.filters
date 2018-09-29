@@ -57,6 +57,9 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\DeferredBuffersClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="systemclass.h">
@@ -93,6 +96,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LightClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\DeferredBuffersClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
