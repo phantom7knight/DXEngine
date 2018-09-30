@@ -157,7 +157,7 @@ bool GraphicsClass::Frame()
 	bool result;
 	static float rotation = 0.0f;
 
-	rotation += (float)PI_ *0.01f;
+	rotation += (float)PI_ *0.0051f;
 
 	if (rotation > 360.0f)
 	{
