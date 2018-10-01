@@ -2,7 +2,7 @@
 
 InputClass::InputClass()
 {
-
+	
 }
 
 InputClass::InputClass(const InputClass& other)
@@ -18,6 +18,8 @@ InputClass::~InputClass()
 void InputClass::Initialize()
 {
 	int i;
+
+	
 
 	for (i = 0; i < 256; i++)
 	{

@@ -21,9 +21,18 @@ GraphicsClass::~GraphicsClass()
 
 }
 
+void GraphicsClass::Update()
+{
+	m_Camera->SetPosition(Camera_PosX, Camera_PosY, Camera_PosZ);
+}
+
 bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMFLOAT3 LightPos)
 {
 	bool result;
+
+	Camera_PosX = 0.0f;
+	Camera_PosY = 0.0f;
+	Camera_PosZ = -5.0f;
 
 	m_D3D = new D3DClass;
 	if (!m_D3D)
@@ -44,7 +53,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 		return false;
 	}
 
-	m_Camera->SetPosition(0.0f, 0.0f, -5.0f);
+	m_Camera->SetPosition(Camera_PosX, Camera_PosY, Camera_PosZ);
 
 	m_Model = new ModelClass;
 	if (!m_Model)
@@ -178,6 +187,8 @@ bool GraphicsClass::Render(float rotation)
 	bool result;
 
 	m_D3D->BeginScene(0.0f, 0.5f, 0.46f, 1.0f);		//Which calls the Clear color function
+
+	
 
 	m_Camera->Render();
 

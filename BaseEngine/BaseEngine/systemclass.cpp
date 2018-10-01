@@ -97,6 +97,9 @@ void SystemClass::Run()
 	done = false;
 	while (!done)
 	{
+
+		m_Graphics->Update();
+
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -129,50 +132,25 @@ bool SystemClass::Frame()
 		return false;
 	}
 
-	//Camera Controls
-	/*if (m_Input->IsKeyDown(VK_UP))
+#pragma region CamerControls
+	if (m_Input->IsKeyDown(VK_UP))
 	{	
-		XMFLOAT3 cameraposition = m_Camera->GetPosition();
-		m_Camera->SetPosition()
+		m_Graphics->Camera_PosY += 0.1f;
 	}	
 	if (m_Input->IsKeyDown(VK_DOWN))
 	{	
-		
+		m_Graphics->Camera_PosY -= 0.1f;
 	}	
 	if (m_Input->IsKeyDown(VK_LEFT))
 	{
-	
+		m_Graphics->Camera_PosX -= 0.1f;
 	}
 	if (m_Input->IsKeyDown(VK_RIGHT))
 	{
-
-	}*/
-
-
-	//Light Control
-	/*if (m_Input->IsKeyDown(VK_NUMPAD8))
-	{
-		m_Camera->SetPosition()
+		m_Graphics->Camera_PosX += 0.1f;
 	}
+#pragma endregion
 	
-	if (m_Input->IsKeyDown(VK_NUMPAD5))
-	{
-
-	}
-	
-	if (m_Input->IsKeyDown(VK_NUMPAD4))
-	{
-
-	}
-	
-	if (m_Input->IsKeyDown(VK_NUMPAD6))
-	{
-
-	}
-	*/
-
-
-
 	result = m_Graphics->Frame();
 	if (!result)
 	{
