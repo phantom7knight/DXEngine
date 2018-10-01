@@ -137,45 +137,47 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 	{ XMFLOAT3(1.0ff,  1.0ff,  1.0ff) , XMFLOAT2(0.0f, 1.0ff) ,XMFLOAT3(0.0f, 0.0f,  1.0ff)  },   // 6
 	{ XMFLOAT3(1.0ff, -1.0ff,  1.0ff) , XMFLOAT2(0.0f, 1.0ff) ,XMFLOAT3(0.0f, 0.0f,  1.0ff)  }  */  // 7
 
+
+#pragma region Vertex Positions
 	VertexType vVertices[36] =
 	{	//Position						 // UV co-ordinates	   //Normals	
 								  	     
-		{ XMFLOAT3(-1.0f,  1.0f, -1.0f),    XMFLOAT2(  0.0f , -1.0f  ),	       XMFLOAT3(0.0, 0.0,-1.0) },
-		{ XMFLOAT3(1.0f,  1.0f , -1.0f),     XMFLOAT2(0.0f , -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
-		{ XMFLOAT3(-1.0f, -1.0f, -1.0f),     XMFLOAT2(0.0f ,  -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
-		{ XMFLOAT3(-1.0f, -1.0f, -1.0f),     XMFLOAT2(0.0f ,  -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
-		{ XMFLOAT3(1.0f,  1.0f , -1.0f),     XMFLOAT2(0.0f , -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
-		{ XMFLOAT3(1.0f, -1.0f, -1.0f),      XMFLOAT2(0.0f ,  -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
-		{ XMFLOAT3(1.0f,  1.0f , -1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
-		{ XMFLOAT3(1.0f,  1.0f ,  1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
-		{ XMFLOAT3(1.0f, -1.0f, -1.0f),      XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
-		{ XMFLOAT3(1.0f, -1.0f, -1.0f),      XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
-		{ XMFLOAT3(1.0f,  1.0f ,  1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
-		{ XMFLOAT3(1.0f, -1.0f,  1.0f),      XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
-		{ XMFLOAT3(1.0f,  1.0f ,  1.0f),      XMFLOAT2(0.0f ,  1.0f),		   XMFLOAT3(0.0, 0.0, 1.0) },
-		{ XMFLOAT3(-1.0f,  1.0f ,  1.0f),      XMFLOAT2(0.0f ,  1.0f),		   XMFLOAT3(0.0, 0.0, 1.0) },
-		{ XMFLOAT3(1.0f, -1.0f,  1.0f),     XMFLOAT2(0.0f ,  1.0f),		       XMFLOAT3(0.0, 0.0, 1.0) },
-		{ XMFLOAT3(1.0f, -1.0f,  1.0f),     XMFLOAT2(0.0f ,  1.0f),		       XMFLOAT3(0.0, 0.0, 1.0) },
-		{ XMFLOAT3(-1.0f,  1.0f ,  1.0f),     XMFLOAT2(0.0f ,  1.0f),		   XMFLOAT3(0.0, 0.0, 1.0) },
-		{ XMFLOAT3(-1.0f, -1.0f,  1.0f),     XMFLOAT2(0.0f ,  1.0f),		   XMFLOAT3(0.0, 0.0, 1.0) },
-		{ XMFLOAT3(-1.0f,  1.0f ,  1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
-		{ XMFLOAT3(-1.0f,  1.0f , -1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
-		{ XMFLOAT3(-1.0f, -1.0f,  1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
-		{ XMFLOAT3(-1.0f, -1.0f,  1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
-		{ XMFLOAT3(-1.0f,  1.0f , -1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
-		{ XMFLOAT3(-1.0f, -1.0f, -1.0f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
-		{ XMFLOAT3(-1.0f,  1.0f ,  1.0f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
-		{ XMFLOAT3(1.0f,  1.0f ,  1.0f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
-		{ XMFLOAT3(-1.0f,  1.0f , -1.0f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
-		{ XMFLOAT3(-1.0f,  1.0f , -1.0f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
-		{ XMFLOAT3(1.0f,  1.0f ,  1.0f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
-		{ XMFLOAT3(1.0f,  1.0f , -1.0f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
-		{ XMFLOAT3(-1.0f, -1.0f, -1.0f),     XMFLOAT2(-1.0f ,  0.0f),		   XMFLOAT3(0.0,-1.0, 0.0) },
-		{ XMFLOAT3(1.0f, -1.0f, -1.0f),     XMFLOAT2(-1.0f ,  0.0f),		   XMFLOAT3(0.0,-1.0, 0.0) },
-		{ XMFLOAT3(-1.0f, -1.0f,  1.0f),     XMFLOAT2(-1.0f ,  0.0f),	       XMFLOAT3(0.0,-1.0, 0.0) },
-		{ XMFLOAT3(-1.0f, -1.0f,  1.0f),     XMFLOAT2(-1.0f ,  0.0f),	       XMFLOAT3(0.0,-1.0, 0.0) },
-		{ XMFLOAT3(1.0f, -1.0f, -1.0f),     XMFLOAT2(-1.0f ,  0.0f),		   XMFLOAT3(0.0,-1.0, 0.0) },
-		{ XMFLOAT3(1.0f, -1.0f,  1.0f),     XMFLOAT2(-1.0f ,  0.0f)	,	       XMFLOAT3(0.0,-1.0, 0.0) }
+		{ XMFLOAT3(-0.5f,  0.5f, -0.5f),    XMFLOAT2(  0.0f , -1.0f  ),	       XMFLOAT3(0.0, 0.0,-1.0) },
+		{ XMFLOAT3(0.5f,  0.5f , -0.5f),     XMFLOAT2(0.0f , -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
+		{ XMFLOAT3(-0.5f, -0.5f, -0.5f),     XMFLOAT2(0.0f ,  -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
+		{ XMFLOAT3(-0.5f, -0.5f, -0.5f),     XMFLOAT2(0.0f ,  -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
+		{ XMFLOAT3(0.5f,  0.5f , -0.5f),     XMFLOAT2(0.0f , -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
+		{ XMFLOAT3(0.5f, -0.5f, -0.5f),      XMFLOAT2(0.0f ,  -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },
+		{ XMFLOAT3(0.5f,  0.5f , -0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
+		{ XMFLOAT3(0.5f,  0.5f ,  0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
+		{ XMFLOAT3(0.5f, -0.5f, -0.5f),      XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
+		{ XMFLOAT3(0.5f, -0.5f, -0.5f),      XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
+		{ XMFLOAT3(0.5f,  0.5f ,  0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
+		{ XMFLOAT3(0.5f, -0.5f,  0.5f),      XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(1.0, 0.0, 0.0) },
+		{ XMFLOAT3(0.5f,  0.5f ,  0.5f),      XMFLOAT2(0.0f ,  1.0f),		   XMFLOAT3(0.0, 0.0, 1.0) },
+		{ XMFLOAT3(-0.5f,  0.5f ,  0.5f),      XMFLOAT2(0.0f ,  1.0f),		   XMFLOAT3(0.0, 0.0, 1.0) },
+		{ XMFLOAT3(0.5f, -0.5f,  0.5f),     XMFLOAT2(0.0f ,  1.0f),		       XMFLOAT3(0.0, 0.0, 1.0) },
+		{ XMFLOAT3(0.5f, -0.5f,  0.5f),     XMFLOAT2(0.0f ,  1.0f),		       XMFLOAT3(0.0, 0.0, 1.0) },
+		{ XMFLOAT3(-0.5f,  0.5f ,  0.5f),     XMFLOAT2(0.0f ,  1.0f),		   XMFLOAT3(0.0, 0.0, 1.0) },
+		{ XMFLOAT3(-0.5f, -0.5f,  0.5f),     XMFLOAT2(0.0f ,  1.0f),		   XMFLOAT3(0.0, 0.0, 1.0) },
+		{ XMFLOAT3(-0.5f,  0.5f ,  0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
+		{ XMFLOAT3(-0.5f,  0.5f , -0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
+		{ XMFLOAT3(-0.5f, -0.5f,  0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
+		{ XMFLOAT3(-0.5f, -0.5f,  0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
+		{ XMFLOAT3(-0.5f,  0.5f , -0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
+		{ XMFLOAT3(-0.5f, -0.5f, -0.5f),     XMFLOAT2(0.0f ,  0.0f),		   XMFLOAT3(-1.0, 0.0, 0.0)  },
+		{ XMFLOAT3(-0.5f,  0.5f ,  0.5f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
+		{ XMFLOAT3(0.5f,  0.5f ,  0.5f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
+		{ XMFLOAT3(-0.5f,  0.5f , -0.5f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
+		{ XMFLOAT3(-0.5f,  0.5f , -0.5f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
+		{ XMFLOAT3(0.5f,  0.5f ,  0.5f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
+		{ XMFLOAT3(0.5f,  0.5f , -0.5f),     XMFLOAT2(1.0f ,  0.0f),		   XMFLOAT3(0.0, 1.0, 0.0) },
+		{ XMFLOAT3(-0.5f, -0.5f, -0.5f),     XMFLOAT2(-1.0f ,  0.0f),		   XMFLOAT3(0.0,-1.0, 0.0) },
+		{ XMFLOAT3(0.5f, -0.5f, -0.5f),     XMFLOAT2(-1.0f ,  0.0f),		   XMFLOAT3(0.0,-1.0, 0.0) },
+		{ XMFLOAT3(-0.5f, -0.5f,  0.5f),     XMFLOAT2(-1.0f ,  0.0f),	       XMFLOAT3(0.0,-1.0, 0.0) },
+		{ XMFLOAT3(-0.5f, -0.5f,  0.5f),     XMFLOAT2(-1.0f ,  0.0f),	       XMFLOAT3(0.0,-1.0, 0.0) },
+		{ XMFLOAT3(0.5f, -0.5f, -0.5f),     XMFLOAT2(-1.0f ,  0.0f),		   XMFLOAT3(0.0,-1.0, 0.0) },
+		{ XMFLOAT3(0.5f, -0.5f,  0.5f),     XMFLOAT2(-1.0f ,  0.0f)	,	       XMFLOAT3(0.0,-1.0, 0.0) }
 															 		  
 
 
@@ -183,15 +185,15 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 
 	};
 
+#pragma endregion
+
+
+#pragma region Index
 	for (int i = 0; i < 36; ++i)
 	{
 		indices[i] = i;
 	}
-
-
-	//indices[0] = 0;  // Bottom left.
-	//indices[1] = 1;  // Top middle.
-	//indices[2] = 2;  // Bottom right.
+#pragma endregion
 
 
 	//========================================================================

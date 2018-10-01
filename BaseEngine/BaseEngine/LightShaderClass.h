@@ -1,4 +1,10 @@
 #pragma once
+
+
+
+const int LIGHTS_COUNT = 4;
+
+
 class LightShaderClass
 {
 
@@ -27,6 +33,20 @@ class LightShaderClass
 		//float padding;
 	};
 
+	//Point Light
+	/*struct LightColorBufferType
+	{
+		XMFLOAT4 diffusecolor[LIGHTS_COUNT];
+	};
+	
+	struct LightPositionBufferType
+	{
+		XMFLOAT4 lightPosition[LIGHTS_COUNT];
+	};*/
+
+
+
+
 public:
 	LightShaderClass();
 	LightShaderClass(const LightShaderClass&);
@@ -52,9 +72,13 @@ private:
 	ID3D11InputLayout* m_layout;
 	ID3D11Buffer* m_matrixBuffer;
 
-	ID3D11Buffer* m_lightbuffer;
-	ID3D11Buffer* m_camerabuffer;
-	ID3D11SamplerState* m_sampleState;
+	ID3D11Buffer*		   m_lightbuffer;
+	ID3D11Buffer*		   m_camerabuffer;
+	ID3D11SamplerState*    m_sampleState;
+
+	//ID3D11Buffer* m_lightColorBuffer;
+	//ID3D11Buffer* m_lightPositionBuffer;
+
 
 };
 

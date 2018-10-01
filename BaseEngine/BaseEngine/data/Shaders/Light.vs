@@ -1,4 +1,7 @@
 
+#define LIGHTS_COUNT 4
+
+
 cbuffer MatrixBuffer
 {
 	matrix worldMatrix;
@@ -7,12 +10,19 @@ cbuffer MatrixBuffer
 
 };
 
+/*cbuffer LightPositionBuffer
+{
+	float4 lightPosition[LIGHTS_COUNT];
+};*/
+
 cbuffer CameraBuffer
 {
 	float3 cameraPostion;
 	float padding;
 
 };
+
+
 
 struct VertexInputType
 {
@@ -31,6 +41,12 @@ struct PixelInputType
 	float2 tex			: TEXCOORD0;
 	float3 normal		: NORMAL;
 	float3 viewDirection: TEXCOORD1;
+
+	/*float3 lightPos1 : TEXCOORD2;
+	float3 lightPos2 : TEXCOORD3;
+	float3 lightPos3 : TEXCOORD4;
+	float3 lightPos4 : TEXCOORD5;*/
+
 
 };
 
@@ -56,8 +72,17 @@ PixelInputType LightVertexShader(VertexInputType input)
 
 	output.viewDirection = normalize(output.viewDirection);
 
+	/*output.lightPos1.xyz = lightPosition[0] - worldPosition.xyz;
+	output.lightPos2.xyz = lightPosition[1] - worldPosition.xyz;
+	output.lightPos3.xyz = lightPosition[2] - worldPosition.xyz;
+	output.lightPos4.xyz = lightPosition[3] - worldPosition.xyz;
 
 
+	output.lightPos1 = normalize(output.lightPos1);
+	output.lightPos2 = normalize(output.lightPos2);
+	output.lightPos3 = normalize(output.lightPos3);
+	output.lightPos4 = normalize(output.lightPos4);*/
+										 
 	return output;
 
 }

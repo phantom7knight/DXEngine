@@ -201,8 +201,24 @@ void DeferredBuffersClass::SetRenderTargets(ID3D11DeviceContext *deviceContext)
 
 }
 
-void DeferredBuffersClass::CleanRenderTargets(ID3D11DeviceContext *, float, float, float, float)
+void DeferredBuffersClass::CleanRenderTargets(ID3D11DeviceContext *deviceContext, float red, float blue, float green, float alpha)
 {
+	float color[4];
+	int i;
+
+	color[0] = red;
+	color[1] = blue;
+	color[2] = green;
+	color[3] = alpha;
+
+	for (i = 0; i < Buffer_Count; ++i)
+	{
+		deviceContext->ClearRenderTargetView(m_renderTargetViewArray[i], color);
+	}
+
+	deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+
+	return;
 }
 
 ID3D11ShaderResourceView * DeferredBuffersClass::GetShaderResourceView(int view)
