@@ -41,7 +41,7 @@ bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, in
 	//We create an array of 2D textures to which is used for diferred shader
 	//====================================================================================
 
-
+	//init texture desc
 	ZeroMemory(&textureDesc, sizeof(textureDesc));
 
 	textureDesc.Height = textureHeight;
@@ -97,7 +97,7 @@ bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, in
 
 	for (i = 0; i < Buffer_Count; ++i)
 	{
-		result = device->CreateRenderTargetView(m_renderTargetTextureArray[i], &renderTargetViewDesc, &m_renderTargetViewArray[i]);
+		result = device->CreateShaderResourceView(m_renderTargetTextureArray[i], &shaderResourceViewDesc, &m_shaderResourceViewArray[i]);
 
 		if (FAILED(result))
 		{
@@ -124,19 +124,20 @@ bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, in
 	depthBufferDesc.CPUAccessFlags = 0;
 	depthBufferDesc.MiscFlags = 0; //D3D11_RESOURCE_MISC_GENERATE_MIPS
 
-	for (i = 0; i < Buffer_Count; ++i)
-	{
-		result = device->CreateTexture2D(&depthBufferDesc, NULL, &m_depthStencilBuffer);
-
-		if (FAILED(result))
-		{
-			return false;
-		}
-	}
 	
+	result = device->CreateTexture2D(&depthBufferDesc, NULL, &m_depthStencilBuffer);
+
+	if (FAILED(result))
+	{
+		return false;
+	}
+
 	//====================================================================================
 	//Set up the depth stencil view
 	//====================================================================================
+
+	ZeroMemory(&depthStencilViewDesc, sizeof(depthStencilViewDesc));
+
 
 	depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;	//DSV->Depth Stencil View
