@@ -10,7 +10,7 @@ private:
 		XMMATRIX view;
 		XMMATRIX projection;
 	};
-
+	//ylol
 	bool InitializeShader(ID3D11Device*, HWND, WCHAR*, WCHAR*);
 	void ShutdownShader();
 	void OutputShaderErrorMessage(ID3D10Blob*, HWND, WCHAR*);
