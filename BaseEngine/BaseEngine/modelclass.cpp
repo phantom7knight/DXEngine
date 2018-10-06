@@ -94,6 +94,7 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 		return false;
 	}
 
+#pragma region All the vertex&index data
 	//To draw a quad without the texture
 	/*//vertices[0].position = XMFLOAT3(-1.0ff, -1.0ff, 0.0f);  // Bottom left.
 	//vertices[0].color = XMFLOAT4(1.0ff, 0.0f, 0.0f, 1.0ff);
@@ -136,6 +137,8 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 	{ XMFLOAT3(-1.0ff,  1.0ff,  1.0ff), XMFLOAT2(0.0f, 1.0ff) ,XMFLOAT3(0.0f, 0.0f,  1.0ff)  },  // 5
 	{ XMFLOAT3(1.0ff,  1.0ff,  1.0ff) , XMFLOAT2(0.0f, 1.0ff) ,XMFLOAT3(0.0f, 0.0f,  1.0ff)  },   // 6
 	{ XMFLOAT3(1.0ff, -1.0ff,  1.0ff) , XMFLOAT2(0.0f, 1.0ff) ,XMFLOAT3(0.0f, 0.0f,  1.0ff)  }  */  // 7
+
+#pragma endregion
 
 
 #pragma region Vertex Positions
@@ -252,18 +255,7 @@ void ModelClass::ShutdownBuffer()
 {
 	Safe_Release(m_indexBuffer);
 	Safe_Release(m_vertexBuffer);
-	
-	/*if (m_indexBuffer)
-	{
-		m_indexBuffer->Release();
-		m_indexBuffer = 0;
-	}
 
-	if (m_vertexBuffer)
-	{
-		m_vertexBuffer->Release();
-		m_vertexBuffer = 0;
-	}*/
 	return;
 }
 

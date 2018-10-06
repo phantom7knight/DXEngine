@@ -35,6 +35,7 @@ private:
 	InputClass* m_Input;
 	GraphicsClass* m_Graphics;
 	CameraClass* m_Camera;
+	DeferredBuffersClass* m_DeferredBuffer;
 
 	XMFLOAT3 LightPos;
 
