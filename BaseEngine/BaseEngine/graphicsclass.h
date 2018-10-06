@@ -11,6 +11,8 @@
 #include "colorshaderclass.h"
 #include "LightShaderClass.h"
 #include "LightClass.h"
+#include "DeferredBuffersClass.h"
+#include "DeferredShaderClass.h"
 
 
 class GraphicsClass
@@ -43,7 +45,9 @@ private:
 	LightClass* m_Light;
 	LightShaderClass* m_LightShader;
 
-
+	//Deferred Shader part
+	DeferredShaderClass*	m_DeferredShader;
+	DeferredBuffersClass*	m_DeferredBuffer;
 };
 
 #endif // !GRAPHICSCLASS_H_

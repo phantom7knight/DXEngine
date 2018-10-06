@@ -9,6 +9,8 @@ GraphicsClass::GraphicsClass()
 	m_ColorShader = 0;
 	m_Light = 0;
 	m_LightShader = 0;
+	m_DeferredShader = 0;
+	m_DeferredBuffer = 0;
 }
 
 GraphicsClass::GraphicsClass(const GraphicsClass& other)
@@ -68,7 +70,34 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 		return false;
 	}
 
-	m_TextureShader = new TextureShaderClass;
+	m_DeferredBuffer = new DeferredBuffersClass();
+	
+	if (!m_DeferredBuffer)
+		return false;
+
+
+	result = m_DeferredBuffer->Initialize(m_D3D->GetDevice(), screenWidth, screenHeight, SCREEN_DEPTH, SCREEN_NEAR);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the Deferred Buffers", L"Error", MB_OK);
+		return false;
+	}
+
+
+	m_DeferredShader = new DeferredShaderClass();
+
+	if (!m_DeferredBuffer)
+		return false;
+
+
+	result = m_DeferredShader->Initialize(m_D3D->GetDevice(), hwnd);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the Deferred Shader Object", L"Error", MB_OK);
+		return false;
+	}
+
+	/*m_TextureShader = new TextureShaderClass;
 	if (!m_TextureShader)
 	{
 		return false;
@@ -79,7 +108,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 	{
 		MessageBox(hwnd, L"Could not initialize the Texture shader object.", L"Error", MB_OK);
 		return false;
-	}
+	}*/
 
 	//Init Light shader object
 
@@ -131,6 +160,19 @@ void GraphicsClass::Shutdown()
 		m_LightShader = 0;
 	}
 
+	if (m_DeferredBuffer)
+	{
+		m_DeferredBuffer->ShutDown();
+		delete m_DeferredBuffer;
+		m_DeferredBuffer = 0;
+	}
+
+	if (m_DeferredShader)
+	{
+		m_DeferredShader->Shutdown();
+		delete m_DeferredShader;
+		m_DeferredShader = 0;
+	}
 
 	/*if (m_TextureShader)
 	{
