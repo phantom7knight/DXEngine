@@ -23,7 +23,7 @@ struct PixelInputType
 };
 
 
-PixelInputType ColorVertexShader(VertexInputType input)
+PixelInputType DeferredVertexShader(VertexInputType input)
 {
 	PixelInputType output;
 
@@ -35,7 +35,7 @@ PixelInputType ColorVertexShader(VertexInputType input)
 
 	output.tex  = input.tex;
 
-	output.color=input.color;
+	output.normal = input.normal;
 
 	return output;
 }

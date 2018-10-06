@@ -24,6 +24,7 @@ DeferredBuffersClass::~DeferredBuffersClass()
 {
 }
 
+//Create the G-Buffer for the Deferred Shading
 bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, int textureHeight, float screenDepth, float screenHeight)
 {
 	D3D11_TEXTURE2D_DESC textureDesc;
@@ -191,6 +192,7 @@ void DeferredBuffersClass::ShutDown()
 
 
 }
+
 
 void DeferredBuffersClass::SetRenderTargets(ID3D11DeviceContext *deviceContext)
 {
