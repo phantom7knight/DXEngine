@@ -25,7 +25,7 @@ using namespace DirectX;
 #include "graphicsclass.h"
 #include "inputclass.h"
 #include "d3dclass.h"
-
+#include "DeferredBuffersClass.h"
 
 //Constants
 

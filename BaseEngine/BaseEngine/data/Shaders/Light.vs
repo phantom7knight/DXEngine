@@ -1,7 +1,7 @@
 
 #define LIGHTS_COUNT 4
 
-
+//Constant Buffer
 cbuffer MatrixBuffer
 {
 	matrix worldMatrix;
@@ -23,7 +23,7 @@ cbuffer CameraBuffer
 };
 
 
-
+//Input layout
 struct VertexInputType
 {
 

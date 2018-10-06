@@ -79,18 +79,6 @@ void TextureClass::Shutdown()
 	Safe_Release(m_textureView);
 	Safe_Release(m_texture);
 
-	/*if (m_textureView)
-	{
-		m_textureView->Release();
-		m_textureView = 0;
-	}
-
-	if (m_texture)
-	{
-		m_texture->Release();
-		m_texture = 0;
-	}*/
-
 	if (m_targaData)
 	{
 		delete[] m_targaData;
