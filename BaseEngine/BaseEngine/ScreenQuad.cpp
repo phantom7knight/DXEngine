@@ -100,10 +100,26 @@ bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quad
 
 void ScreenQuad::ShutDownBuffers()
 {
+	Safe_Release(m_indexBuffer);
+	Safe_Release(m_vertexBuffer);
 }
 
 void ScreenQuad::RenderBuffers(ID3D11DeviceContext *deviceContext)
 {
+
+	unsigned int stride;
+	unsigned int offset;
+
+	stride = sizeof(VertexType);
+	offset = 0;
+
+	deviceContext->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
+
+	deviceContext->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+
+	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	return;
 }
 
 ScreenQuad::ScreenQuad()
