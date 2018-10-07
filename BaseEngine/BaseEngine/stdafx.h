@@ -31,7 +31,7 @@ using namespace DirectX;
 //Constants
 
 #define Safe_Release(ptr) { ptr->Release();   ptr = 0; }
-
+#define Result_Check(result) { if(!result) return false; }
 
 //Game Consants
 
