@@ -13,6 +13,7 @@
 #include "LightClass.h"
 #include "DeferredBuffersClass.h"
 #include "DeferredShaderClass.h"
+#include  "ScreenQuad.h"
 
 
 class GraphicsClass
@@ -26,6 +27,9 @@ public:
 	bool Initialize(int, int, HWND, XMFLOAT3 );
 	void Shutdown();
 	bool Frame();
+
+	//RenderScreenToTexture
+	bool  FirstPass(float rotation);
 
 	float Camera_PosX ;
 	float Camera_PosY ;
@@ -48,6 +52,8 @@ private:
 	//Deferred Shader part
 	DeferredShaderClass*	m_DeferredShader;
 	DeferredBuffersClass*	m_DeferredBuffer;
+
+	ScreenQuad*	m_ScreenQuad;
 };
 
 #endif // !GRAPHICSCLASS_H_

@@ -27,6 +27,7 @@ using namespace DirectX;
 #include "d3dclass.h"
 #include "DeferredBuffersClass.h"
 #include "DeferredShaderClass.h"
+#include "ScreenQuad.h"
 
 //Constants
 

@@ -11,6 +11,7 @@ GraphicsClass::GraphicsClass()
 	m_LightShader = 0;
 	m_DeferredShader = 0;
 	m_DeferredBuffer = 0;
+	m_ScreenQuad = 0;
 }
 
 GraphicsClass::GraphicsClass(const GraphicsClass& other)
@@ -67,6 +68,17 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object", L"Error", MB_OK);
+		return false;
+	}
+	
+	m_ScreenQuad = new ScreenQuad;
+
+	Result_Check(m_ScreenQuad);
+	
+	result = m_ScreenQuad->Initialize(m_D3D->GetDevice(),screenWidth, screenHeight);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the Screen Quad object", L"Error", MB_OK);
 		return false;
 	}
 
@@ -180,6 +192,13 @@ void GraphicsClass::Shutdown()
 		delete m_TextureShader;
 		m_TextureShader = 0;
 	}*/
+	
+	if (m_ScreenQuad)
+	{
+		m_ScreenQuad->ShutDown();
+		delete m_ScreenQuad;
+		m_ScreenQuad = 0;
+	}
 
 	if (m_Model)
 	{
@@ -223,10 +242,48 @@ bool GraphicsClass::Frame()
 	return true;
 }
 
+bool GraphicsClass::FirstPass(float rotation)
+{
+	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
+	//Set the render buffers to be the render targets
+	m_DeferredBuffer->SetRenderTargets(m_D3D->GetDeviceContext());
+
+	//clear render buffers
+	m_DeferredBuffer->CleanRenderTargets(m_D3D->GetDeviceContext(), 0.0f, 0.5f, 0.5f, 1.0f);
+
+
+	m_D3D->GetWorldMatrix(worldMatrix);
+	m_Camera->GetViewMatrix(viewMatrix);
+	m_D3D->GetProjectionMatrix(projectionMatrix);
+
+	worldMatrix = XMMatrixRotationY(rotation);
+
+	m_Model->Render(m_D3D->GetDeviceContext());
+
+	//Check this
+	m_DeferredShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
+		m_Light->GetSpecularColor(), m_Light->GetSpecularPower());
+
+
+	m_D3D->SetBackBufferRenderTarget();
+
+	m_D3D->ResetViewPort();
+
+	return true;
+}
+
 bool GraphicsClass::Render(float rotation)
 {
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	bool result;
+
+	//Obtain G-Buffer or First Pass
+
+	result = FirstPass(rotation);
+
+	Result_Check(result);
+
 
 	m_D3D->BeginScene(0.0f, 0.5f, 0.46f, 1.0f);		//Which calls the Clear color function
 
@@ -241,27 +298,34 @@ bool GraphicsClass::Render(float rotation)
 
 	worldMatrix = XMMatrixRotationY(rotation);
 
+	m_D3D->TurnZBufferOff();
+
+	m_ScreenQuad->Render(m_D3D->GetDeviceContext());
+
 	//Render whichever model which we wamt to use ex: here triangle
 	m_Model->Render(m_D3D->GetDeviceContext());
 
+	result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_ScreenQuad->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
+		m_Light->GetSpecularColor(), m_Light->GetSpecularPower());
+
+	Result_Check(result);
 	//Add the shader on top of the model which is being used 
 	//result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture());
 	//result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	
-	result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+	/*result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
 		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(),m_Camera->GetPosition(),
-		m_Light->GetSpecularColor(),m_Light->GetSpecularPower());
+		m_Light->GetSpecularColor(),m_Light->GetSpecularPower());*/
 	
 		
+	m_D3D->TurnZBufferOn();
 	
-	if (!result)
-	{
-		return false;
-	}
-
 	m_D3D->EndScene();							  //Ends the rendering part and stuff
 
 
 
 	return true;
 }
+
+
