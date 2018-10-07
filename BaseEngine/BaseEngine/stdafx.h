@@ -25,7 +25,6 @@ using namespace DirectX;
 #include "graphicsclass.h"
 #include "inputclass.h"
 #include "d3dclass.h"
-#include "Shader.h"
 #include "DeferredBuffersClass.h"
 #include "DeferredShaderClass.h"
 
