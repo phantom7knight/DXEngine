@@ -79,7 +79,7 @@ bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quad
 
 	result = device->CreateBuffer(&vertexBufferDesc, &vertexData, &m_vertexBuffer);
 	//Result_Check(!result);
-	if (!result) 
+	if (FAILED(result)) 
 		return false;
 
 	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
@@ -95,7 +95,7 @@ bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quad
 
 	result = device->CreateBuffer(&indexBufferDesc, &indexData, &m_indexBuffer);
 	//Result_Check(!result);
-	if (!result) 
+	if (FAILED(result))
 		return false;
 
 
@@ -154,7 +154,10 @@ bool ScreenQuad::Initialize(ID3D11Device *device, int screenWidth, int screenHei
 	bool result;
 	result = InitializeBuffers(device, screenWidth, screenHeight);
 
-	Result_Check(!result);
+	if (!result)
+		return false;
+
+	//Result_Check(!result);
 
 	return true;
 }

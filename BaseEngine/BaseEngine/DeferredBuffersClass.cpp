@@ -73,6 +73,8 @@ bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, in
 	//We create render target views to access the render target textures
 	//====================================================================================
 	
+	ZeroMemory(&renderTargetViewDesc, sizeof(renderTargetViewDesc));
+
 	renderTargetViewDesc.Format = textureDesc.Format;
 	renderTargetViewDesc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;	//RTV->Render Target View
 	renderTargetViewDesc.Texture2D.MipSlice = 0;
@@ -90,6 +92,8 @@ bool DeferredBuffersClass::Initialize(ID3D11Device* device, int textureWidth, in
 	//====================================================================================
 	//We create shader resource views for shaders to access render target textures
 	//====================================================================================
+
+	ZeroMemory(&shaderResourceViewDesc, sizeof(shaderResourceViewDesc));
 
 	shaderResourceViewDesc.Format = textureDesc.Format;
 	shaderResourceViewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;	//SRV->Shader Resource View
