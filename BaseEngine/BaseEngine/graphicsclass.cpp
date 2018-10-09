@@ -72,8 +72,9 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 	}
 	
 	m_ScreenQuad = new ScreenQuad;
-
-	Result_Check(m_ScreenQuad);
+	if (!m_ScreenQuad)
+		return false;
+	//Result_Check(!m_ScreenQuad);
 	
 	result = m_ScreenQuad->Initialize(m_D3D->GetDevice(),screenWidth, screenHeight);
 	if (!result)
@@ -281,8 +282,9 @@ bool GraphicsClass::Render(float rotation)
 	//Obtain G-Buffer or First Pass
 
 	result = FirstPass(rotation);
-
-	Result_Check(result);
+	if (!result) 
+		return false;
+	//Result_Check(!result);
 
 
 	m_D3D->BeginScene(0.0f, 0.5f, 0.46f, 1.0f);		//Which calls the Clear color function
@@ -309,7 +311,10 @@ bool GraphicsClass::Render(float rotation)
 		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
 		m_Light->GetSpecularColor(), m_Light->GetSpecularPower());
 
-	Result_Check(result);
+	if (!result)
+		return false;
+
+	//Result_Check(!result);
 	//Add the shader on top of the model which is being used 
 	//result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture());
 	//result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);

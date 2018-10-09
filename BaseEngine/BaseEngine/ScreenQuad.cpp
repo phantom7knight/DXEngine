@@ -25,10 +25,17 @@ bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quad
 
 	VertexCB = new VertexType[m_vertexCount];
 
-	Result_Check(VertexCB);
+	if (!VertexCB)
+		return false;
+
+	//Result_Check(!VertexCB);
 
 	indeces = new unsigned long[m_indexCount];
-	Result_Check(indeces);
+
+	if (!indeces)
+		return false;
+
+	//Result_Check(!indeces);
 
 
 	#pragma region ScreenQuadParamerters
@@ -71,7 +78,9 @@ bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quad
 	vertexData.SysMemSlicePitch = 0;
 
 	result = device->CreateBuffer(&vertexBufferDesc, &vertexData, &m_vertexBuffer);
-	Result_Check(result);
+	//Result_Check(!result);
+	if (!result) 
+		return false;
 
 	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	indexBufferDesc.ByteWidth = sizeof(VertexType) * m_vertexCount;
@@ -85,7 +94,9 @@ bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quad
 	indexData.SysMemSlicePitch = 0;
 
 	result = device->CreateBuffer(&indexBufferDesc, &indexData, &m_indexBuffer);
-	Result_Check(result);
+	//Result_Check(!result);
+	if (!result) 
+		return false;
 
 
 	delete [] VertexCB;
@@ -143,7 +154,7 @@ bool ScreenQuad::Initialize(ID3D11Device *device, int screenWidth, int screenHei
 	bool result;
 	result = InitializeBuffers(device, screenWidth, screenHeight);
 
-	Result_Check(result);
+	Result_Check(!result);
 
 	return true;
 }

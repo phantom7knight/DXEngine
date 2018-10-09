@@ -337,7 +337,8 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	depthDisabledStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
 	result = m_device->CreateDepthStencilState(&depthDisabledStencilDesc, &m_depthdisabledStencilState);
-	Result_Check(result);
+	if (!result)
+		return false;
 
 	return true;
 }
