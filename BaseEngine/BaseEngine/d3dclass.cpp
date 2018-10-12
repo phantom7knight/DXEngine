@@ -194,6 +194,7 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 
 	backBufferPtr->Release();
 	backBufferPtr = 0;
+
 	//=====================================================================
 	//Depth buffer is used to render  
 	//=====================================================================
