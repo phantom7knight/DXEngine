@@ -149,6 +149,14 @@ bool SystemClass::Frame()
 	{
 		m_Graphics->Camera_PosX += 0.1f;
 	}
+
+	//Reset the Camera Position
+	if (m_Input->IsKeyDown(VK_SPACE))
+	{
+		m_Graphics->Camera_PosX = 0.0f;
+		m_Graphics->Camera_PosY = 0.0f;
+		m_Graphics->Camera_PosZ = -5.0f;
+	}
 #pragma endregion
 	
 	result = m_Graphics->Frame();
