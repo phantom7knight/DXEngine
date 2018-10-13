@@ -214,8 +214,8 @@ void DeferredBuffersClass::CleanRenderTargets(ID3D11DeviceContext *deviceContext
 	int i;
 
 	color[0] = red;
-	color[1] = blue;
-	color[2] = green;
+	color[1] = green;
+	color[2] = blue;
 	color[3] = alpha;
 
 	for (i = 0; i < Buffer_Count; ++i)
