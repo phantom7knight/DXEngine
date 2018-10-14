@@ -10,7 +10,7 @@ cbuffer MatrixBuffer
 
 cbuffer CameraBuffer
 {
-	float3 cameraPostion;
+	float3 cameraPostion;	
 	float padding;
 
 };

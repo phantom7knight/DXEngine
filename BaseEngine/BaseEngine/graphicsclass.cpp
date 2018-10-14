@@ -234,8 +234,12 @@ bool GraphicsClass::Frame()
 	{
 		rotation -= 360.0f;
 	}
-	
-	result = Render(rotation);
+	//If Deferred
+	result = DeferredRender(rotation);
+
+	//Else Not Deferred
+	//result = Render(rotation);
+
 	if (!result)
 	{
 		return false;
@@ -274,7 +278,7 @@ bool GraphicsClass::FirstPass(float rotation)
 	return true;
 }
 
-bool GraphicsClass::Render(float rotation)
+bool GraphicsClass::DeferredRender(float rotation)
 {
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	bool result;
@@ -334,3 +338,40 @@ bool GraphicsClass::Render(float rotation)
 }
 
 
+bool GraphicsClass::Render(float rotation)
+{
+	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
+	bool result;
+
+
+	m_D3D->BeginScene(0.0f, 0.5f, 0.46f, 1.0f);		//Which calls the Clear color function
+
+	m_Camera->Render();
+
+	//Get MVP matrix
+	m_D3D->GetWorldMatrix(worldMatrix);
+	m_Camera->GetViewMatrix(viewMatrix);
+	m_D3D->GetProjectionMatrix(projectionMatrix);
+
+	worldMatrix = XMMatrixRotationY(rotation);
+
+	//Render whichever model which we wamt to use ex: here triangle
+	m_Model->Render(m_D3D->GetDeviceContext());
+
+	//Result_Check(!result);
+	//Add the shader on top of the model which is being used 
+	
+	//result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture());
+	//result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
+
+	result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(),m_Camera->GetPosition(),
+		m_Light->GetSpecularColor(),m_Light->GetSpecularPower());
+
+
+	m_D3D->EndScene();							  //Ends the rendering part and stuff
+
+
+
+	return true;
+}

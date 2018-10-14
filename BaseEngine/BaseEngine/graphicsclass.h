@@ -37,6 +37,7 @@ public:
 
 private:
 	bool Render(float);
+	bool DeferredRender(float rotation);
 
 	D3DClass*	 m_D3D;
 	CameraClass* m_Camera;
