@@ -261,15 +261,15 @@ bool GraphicsClass::FirstPass(float rotation)
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
-	worldMatrix = XMMatrixRotationY(rotation);
+	//worldMatrix = XMMatrixRotationY(rotation);
 
-	m_Model->Render(m_D3D->GetDeviceContext());
 
 	//Check this
 	m_DeferredShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
 		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
 		m_Light->GetSpecularColor(), m_Light->GetSpecularPower());
 
+	m_Model->Render(m_D3D->GetDeviceContext());
 
 	m_D3D->SetBackBufferRenderTarget();
 
@@ -288,9 +288,8 @@ bool GraphicsClass::DeferredRender(float rotation)
 	result = FirstPass(rotation);
 	if (!result) 
 		return false;
-	//Result_Check(!result);
-
-
+	
+	//Clear the Screen
 	m_D3D->BeginScene(0.0f, 0.5f, 0.46f, 1.0f);		//Which calls the Clear color function
 
 	
@@ -302,7 +301,8 @@ bool GraphicsClass::DeferredRender(float rotation)
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
-	worldMatrix = XMMatrixRotationY(rotation);
+	//For Rotation
+	//worldMatrix = XMMatrixRotationY(rotation);
 
 	m_D3D->TurnZBufferOff();
 
@@ -318,10 +318,10 @@ bool GraphicsClass::DeferredRender(float rotation)
 	if (!result)
 		return false;
 
-	//Result_Check(!result);
-	//Add the shader on top of the model which is being used 
-	//result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture());
-	//result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
+	/*Result_Check(!result);
+	/*Add the shader on top of the model which is being used 
+	/*result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture());
+	/*result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 	
 	/*result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
 		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(),m_Camera->GetPosition(),

@@ -1,13 +1,13 @@
 
+//Constant Buffer
 cbuffer MatrixBuffer
 {
 	matrix worldMatrix;
 	matrix viewMatrix;
 	matrix projectionMatrix;
-
 };
 
-
+//Camera Constant Buffer
 cbuffer CameraBuffer
 {
 	float3 cameraPostion;	
@@ -16,7 +16,7 @@ cbuffer CameraBuffer
 };
 
 
-
+//Vertex Buffer
 struct VertexInputType
 {
 

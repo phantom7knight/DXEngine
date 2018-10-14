@@ -27,7 +27,7 @@ bool LightShaderClass::Initialize(ID3D11Device* device, HWND hwnd)
 {
 	bool result;
 
-	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/Light.vs", (WCHAR*)L"../BaseEngine/data/Shaders/Light.ps");
+	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/DeferredLight.vs", (WCHAR*)L"../BaseEngine/data/Shaders/DeferredLight.ps");
 	if (!result)
 	{
 		return false;
@@ -85,7 +85,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 		}
 		else
 		{
-			MessageBox(hwnd, vsFilename, L"Missing Vertex Shader File", MB_OK);
+			MessageBox(hwnd, vsFilename, L"Missing Light Vertex Shader File", MB_OK);
 		}
 		return false;
 	}
@@ -99,7 +99,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 		}
 		else
 		{
-			MessageBox(hwnd, psFilename, L"Missing Pixel Shader File", MB_OK);
+			MessageBox(hwnd, psFilename, L"Missing Light Pixel Shader File", MB_OK);
 		}
 		return false;
 	}
