@@ -63,7 +63,7 @@
     <ClCompile Include="ScreenQuad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ScreenQuadShaderClass.cpp">
+    <ClCompile Include="ScreenQuadShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,7 +113,7 @@
     <ClInclude Include="ScreenQuad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ScreenQuadShaderClass.h">
+    <ClInclude Include="ScreenQuadShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -130,7 +130,7 @@
     <None Include="data\Shaders\Light.vs" />
     <None Include="data\Shaders\texture.ps" />
     <None Include="data\Shaders\texture.vs" />
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\ScreenQuad.ps" />
-    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\ScreenQuad.vs" />
+    <None Include="ScreenQuad.ps" />
+    <None Include="ScreenQuad.vs" />
   </ItemGroup>
 </Project>
