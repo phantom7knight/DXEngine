@@ -13,6 +13,7 @@
 #include "LightClass.h"
 #include "DeferredBuffersClass.h"
 #include "DeferredShaderClass.h"
+#include "ScreenQuadShaderClass.h"
 #include  "ScreenQuad.h"
 
 
@@ -55,6 +56,7 @@ private:
 	DeferredBuffersClass*	m_DeferredBuffer;
 
 	ScreenQuad*	m_ScreenQuad;
+	ScreenQuadShaderClass* m_ScreenQuadShader;
 };
 
 #endif // !GRAPHICSCLASS_H_

@@ -129,6 +129,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ScreenQuadShaderClass.cpp" />
     <ClCompile Include="DeferredShaderClass.cpp" />
     <ClCompile Include="DeferredBuffersClass.cpp" />
     <ClCompile Include="cameraclass.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="textureshaderclass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ScreenQuadShaderClass.h" />
     <ClInclude Include="DeferredShaderClass.h" />
     <ClInclude Include="DeferredBuffersClass.h" />
     <ClInclude Include="cameraclass.h" />

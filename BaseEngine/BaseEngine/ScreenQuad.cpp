@@ -157,8 +157,7 @@ bool ScreenQuad::Initialize(ID3D11Device *device, int screenWidth, int screenHei
 	if (!result)
 		return false;
 
-	//Result_Check(!result);
-
+	
 	return true;
 }
 

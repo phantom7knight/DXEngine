@@ -12,6 +12,7 @@ GraphicsClass::GraphicsClass()
 	m_DeferredShader = 0;
 	m_DeferredBuffer = 0;
 	m_ScreenQuad = 0;
+	m_ScreenQuadShader = 0;
 }
 
 GraphicsClass::GraphicsClass(const GraphicsClass& other)
@@ -261,13 +262,13 @@ bool GraphicsClass::FirstPass(float rotation)
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
-	//worldMatrix = XMMatrixRotationY(rotation);
+	worldMatrix = XMMatrixRotationY(rotation);
 
 
 	//Check this
 	m_DeferredShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
-		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
-		m_Light->GetSpecularColor(), m_Light->GetSpecularPower());
+					 m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), 
+					 m_Camera->GetPosition(), m_Light->GetSpecularColor(), m_Light->GetSpecularPower());
 
 	m_Model->Render(m_D3D->GetDeviceContext());
 
@@ -302,7 +303,7 @@ bool GraphicsClass::DeferredRender(float rotation)
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
 	//For Rotation
-	//worldMatrix = XMMatrixRotationY(rotation);
+	worldMatrix = XMMatrixRotationY(rotation);
 
 	m_D3D->TurnZBufferOff();
 
