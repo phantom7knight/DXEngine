@@ -58,6 +58,8 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 	}
 
 	m_Camera->SetPosition(Camera_PosX, Camera_PosY, Camera_PosZ);
+	m_Camera->Render();
+	m_Camera->RenderBaseViewMatrix();
 
 	m_Model = new ModelClass;
 	if (!m_Model)
@@ -299,7 +301,7 @@ bool GraphicsClass::DeferredRender(float rotation)
 
 	//Get MVP matrix
 	m_D3D->GetWorldMatrix(worldMatrix);
-	m_Camera->GetViewMatrix(viewMatrix);
+	m_Camera->GetBaseViewMatrix(viewMatrix);
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
 	//For Rotation

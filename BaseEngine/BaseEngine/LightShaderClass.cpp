@@ -43,7 +43,8 @@ void LightShaderClass::Shutdown()
 
 bool LightShaderClass::Render(ID3D11DeviceContext* deviceContext, int indexCount, XMMATRIX worldMatrix, XMMATRIX viewMatrix, XMMATRIX projectionMatrix, ID3D11ShaderResourceView* texture,
 	XMFLOAT3 lightDirection, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
-	XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower)
+	XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower,
+	ID3D11ShaderResourceView* normaltexture)
 {
 	bool result;
 
@@ -138,13 +139,13 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 	polygonLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	polygonLayout[1].InstanceDataStepRate = 0;
 
-	polygonLayout[2].SemanticName = "NORMAL";
+	/*polygonLayout[2].SemanticName = "NORMAL";
 	polygonLayout[2].SemanticIndex = 0;
 	polygonLayout[2].Format = DXGI_FORMAT_R32G32B32_FLOAT;
 	polygonLayout[2].InputSlot = 0;
 	polygonLayout[2].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
 	polygonLayout[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-	polygonLayout[2].InstanceDataStepRate = 0;
+	polygonLayout[2].InstanceDataStepRate = 0;*/
 
 	
 	numElements = sizeof(polygonLayout) / sizeof(polygonLayout[0]);
@@ -283,7 +284,8 @@ void LightShaderClass::OutputShaderErrorMessage(ID3D10Blob* errorMessage, HWND h
 
 bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMatrix, XMMATRIX viewMatrix, XMMATRIX projectionMatrix, ID3D11ShaderResourceView* texture,
 								XMFLOAT3 lightDirection, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
-								XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower)
+								XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower,
+								ID3D11ShaderResourceView* normaltexture)
 {
 	HRESULT result;
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
