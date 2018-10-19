@@ -66,7 +66,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 	ID3D10Blob* errorMessage;
 	ID3D10Blob* vertexShaderBuffer;
 	ID3D10Blob* pixelShaderBuffer;
-	D3D11_INPUT_ELEMENT_DESC polygonLayout[3];
+	D3D11_INPUT_ELEMENT_DESC polygonLayout[2];
 	unsigned int numElements;
 	D3D11_BUFFER_DESC matrixBufferDesc;
 	D3D11_BUFFER_DESC cameraBufferDesc;
@@ -316,7 +316,7 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 
 	deviceContext->VSSetConstantBuffers(bufferNumber, 1, &m_matrixBuffer);
 	deviceContext->PSSetShaderResources(0, 1, &texture);//color texture
-	deviceContext->PSSetShaderResources(0, 2, &normaltexture);//normal texture
+	deviceContext->PSSetShaderResources(1, 1, &normaltexture);//normal texture
 
 
 
