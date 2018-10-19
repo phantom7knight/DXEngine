@@ -50,7 +50,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	lightDir = -lightDirection;
 
 	//Ambient Lighting
-	lightintensity = saturate(dot(normal.xyz,lightDir));
+	lightintensity = saturate(dot(normals.xyz,lightDir));
 	
 	//color = saturate(diffuseColor * lightintensity);
 

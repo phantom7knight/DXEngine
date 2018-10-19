@@ -49,7 +49,7 @@ bool LightShaderClass::Render(ID3D11DeviceContext* deviceContext, int indexCount
 	bool result;
 
 	result = SetShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix, texture,
-		lightDirection,diffuseColor, ambientColor, cameraPostion, specularColor, specularPower);
+		lightDirection,diffuseColor, ambientColor, cameraPostion, specularColor, specularPower, normaltexture);
 
 	if (!result)
 	{
@@ -315,7 +315,9 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 	bufferNumber = 0;
 
 	deviceContext->VSSetConstantBuffers(bufferNumber, 1, &m_matrixBuffer);
-	deviceContext->PSSetShaderResources(0, 1, &texture);
+	deviceContext->PSSetShaderResources(0, 1, &texture);//color texture
+	deviceContext->PSSetShaderResources(0, 2, &normaltexture);//normal texture
+
 
 
 	result = deviceContext->Map(m_camerabuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
