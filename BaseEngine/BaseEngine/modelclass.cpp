@@ -143,7 +143,7 @@ bool ModelClass::InitializeBuffer(ID3D11Device* device)
 
 #pragma region Vertex Positions
 	VertexType vVertices[36] =
-	{	//Position						 // UV co-ordinates	   //Normals	
+	{	//Position						 // UV co-ordinates						//Normals	
 								  	     
 		{ XMFLOAT3(-0.5f,  0.5f, -0.5f),    XMFLOAT2(  0.0f , -1.0f  ),	       XMFLOAT3(0.0, 0.0,-1.0) },
 		{ XMFLOAT3(0.5f,  0.5f , -0.5f),     XMFLOAT2(0.0f , -1.0f),		   XMFLOAT3(0.0, 0.0,-1.0) },

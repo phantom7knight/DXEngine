@@ -1,6 +1,11 @@
 #include "stdafx.h"
 //#include "LightShaderClass.h"
 
+
+#define FWD_RENDERDING
+#define DEFERRED_RENDERING
+
+
 LightShaderClass::LightShaderClass()
 {
 	m_vertexShader = 0;
@@ -27,7 +32,20 @@ bool LightShaderClass::Initialize(ID3D11Device* device, HWND hwnd)
 {
 	bool result;
 
+#ifdef DEFERRED_RENDERING
+	
 	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/DeferredLight.vs", (WCHAR*)L"../BaseEngine/data/Shaders/DeferredLight.ps");
+
+#endif // DEFERRED_RENDERING
+
+#ifdef FWD_RENDERDING
+	
+	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/Light.vs", (WCHAR*)L"../BaseEngine/data/Shaders/Light.ps");
+
+#endif // DEBUG
+
+
+
 	if (!result)
 	{
 		return false;
@@ -86,7 +104,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 		}
 		else
 		{
-			MessageBox(hwnd, vsFilename, L"Missing Light Vertex Shader File", MB_OK);
+			MessageBox(hwnd, vsFilename, L"Missing Deferred Light Vertex Shader File", MB_OK);
 		}
 		return false;
 	}
@@ -100,7 +118,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 		}
 		else
 		{
-			MessageBox(hwnd, psFilename, L"Missing Light Pixel Shader File", MB_OK);
+			MessageBox(hwnd, psFilename, L"Missing Deferred Light Pixel Shader File", MB_OK);
 		}
 		return false;
 	}
