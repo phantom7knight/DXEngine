@@ -1,7 +1,13 @@
 #pragma once
 
+//===============================================
+//Rendering Mode
+//===============================================
 
+//#define FWD_RENDERDING
+#define DEFERRED_RENDERING
 
+//===============================================
 
 //Library includes
 

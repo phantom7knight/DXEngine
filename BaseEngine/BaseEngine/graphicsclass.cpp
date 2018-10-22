@@ -74,6 +74,8 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 		return false;
 	}
 	
+#ifdef DEFERRED_RENDERING
+	
 	m_ScreenQuad = new ScreenQuad;
 	if (!m_ScreenQuad)
 		return false;
@@ -112,6 +114,12 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 		MessageBox(hwnd, L"Could not initialize the Deferred Shader Object", L"Error", MB_OK);
 		return false;
 	}
+
+
+#endif // DEFERRED_RENDERING
+
+
+
 
 	/*m_TextureShader = new TextureShaderClass;
 	if (!m_TextureShader)
@@ -237,11 +245,20 @@ bool GraphicsClass::Frame()
 	{
 		rotation -= 360.0f;
 	}
-	//If Deferred
+	
+#ifdef DEFERRED_RENDERING
+	
 	result = DeferredRender(rotation);
 
-	//Else Not Deferred
-	//result = Render(rotation);
+#endif // DEFERRED_RENDERING
+
+
+#ifdef FWD_RENDERING
+	
+	result = Render(rotation);
+
+#endif // FWD_RENDERING
+
 
 	if (!result)
 	{
@@ -249,6 +266,8 @@ bool GraphicsClass::Frame()
 	}
 	return true;
 }
+
+#ifdef DEFERRED_RENDERING
 
 bool GraphicsClass::FirstPass(float rotation)
 {
@@ -293,7 +312,7 @@ bool GraphicsClass::DeferredRender(float rotation)
 		return false;
 	
 	//Clear the Screen
-	m_D3D->BeginScene(0.0f, 0.0f, 0.0f, 1.0f);		//Which calls the Clear color function
+	m_D3D->BeginScene(0.0f, 1.0f, 0.0f, 1.0f);		//Which calls the Clear color function
 
 	
 
@@ -310,10 +329,10 @@ bool GraphicsClass::DeferredRender(float rotation)
 	worldMatrix = XMMatrixRotationY(rotation);
 
 
-	m_ScreenQuad->Render(m_D3D->GetDeviceContext());
+	//m_ScreenQuad->Render(m_D3D->GetDeviceContext());
 
 	//Render whichever model which we wamt to use ex: here triangle
-	//m_Model->Render(m_D3D->GetDeviceContext());
+	m_Model->Render(m_D3D->GetDeviceContext());
 
 	 m_LightShader->Render(m_D3D->GetDeviceContext(), m_ScreenQuad->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
 		m_DeferredBuffer->GetShaderResourceView(0), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
@@ -342,6 +361,12 @@ bool GraphicsClass::DeferredRender(float rotation)
 }
 
 
+#endif // DEFERRED_RENDERING
+
+
+
+#ifdef FWD_RENDERDING
+
 bool GraphicsClass::Render(float rotation)
 {
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
@@ -368,9 +393,9 @@ bool GraphicsClass::Render(float rotation)
 	//result = m_TextureShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture());
 	//result = m_ColorShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
 
-	result = m_LightShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
+	result = m_LightShader->FWD_Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
 		m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(),m_Camera->GetPosition(),
-		m_Light->GetSpecularColor(),m_Light->GetSpecularPower(), m_DeferredBuffer->GetShaderResourceView(1));
+		m_Light->GetSpecularColor(),m_Light->GetSpecularPower());
 
 
 	m_D3D->EndScene();							  //Ends the rendering part and stuff
@@ -379,3 +404,5 @@ bool GraphicsClass::Render(float rotation)
 
 	return true;
 }
+
+#endif // FWD_RENDERING

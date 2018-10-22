@@ -21,17 +21,34 @@ class LightShaderClass
 		float    padding;
 
 	};
+#ifdef FWD_RENDERDING
 
 	struct LightBufferType
 	{
-		XMFLOAT4 ambientColor;
-		XMFLOAT4 diffuseColor;
-		XMFLOAT3 lightDirection;
-		float	 specularPower;
-		XMFLOAT4 specularColor;
-		
-		//float padding;
+
+			XMFLOAT4 ambientColor;
+			XMFLOAT4 diffuseColor;
+			XMFLOAT3 lightDirection;
+			float	 specularPower;
+			XMFLOAT4 specularColor;
+			//float padding;
 	};
+
+#endif // FWD_RENDERDING
+
+
+
+#ifdef DEFERRED_RENDERING
+
+	struct LightBufferType
+	{
+		XMFLOAT3 lightDirection;
+		float padding;
+	};
+
+#endif // DEFERRED_RENDERING
+
+
 
 	//Point Light
 	/*struct LightColorBufferType
@@ -58,6 +75,11 @@ public:
 				XMFLOAT3 lightDirection, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
 				XMFLOAT3 cameraPostion,XMFLOAT4 specularColor,float specularPower,
 				ID3D11ShaderResourceView* normaltexture);
+
+	bool FWD_Render(ID3D11DeviceContext* deviceContext, int indexCount, XMMATRIX worldMatrix, XMMATRIX viewMatrix, XMMATRIX projectionMatrix, ID3D11ShaderResourceView* texture,
+				XMFLOAT3 lightDirection, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
+				XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower);
+
 
 private:
 	bool InitializeShader(ID3D11Device*, HWND, WCHAR*, WCHAR*);

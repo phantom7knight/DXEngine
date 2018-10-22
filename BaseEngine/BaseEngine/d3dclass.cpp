@@ -477,6 +477,7 @@ void D3DClass::GetVideoCardInfo(char* cardName, int& memory)
 void D3DClass::SetBackBufferRenderTarget()
 {
 	m_deviceContext->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView);
+	return;
 }
 
 void D3DClass::ResetViewPort()

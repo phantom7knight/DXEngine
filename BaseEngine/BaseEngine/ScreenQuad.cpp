@@ -2,6 +2,25 @@
 #include "ScreenQuad.h"
 
 
+
+
+ScreenQuad::ScreenQuad()
+{
+	m_vertexBuffer = 0;
+	m_indexBuffer = 0;
+}
+
+ScreenQuad::ScreenQuad(const ScreenQuad &)
+{
+}
+
+
+ScreenQuad::~ScreenQuad()
+{
+}
+
+
+
 bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quadheight)
 {
 	float left, right, top, bottom;
@@ -133,20 +152,6 @@ void ScreenQuad::RenderBuffers(ID3D11DeviceContext *deviceContext)
 	return;
 }
 
-ScreenQuad::ScreenQuad()
-{
-	m_vertexBuffer = 0;
-	m_indexBuffer = 0;
-}
-
-ScreenQuad::ScreenQuad(const ScreenQuad &)
-{
-}
-
-
-ScreenQuad::~ScreenQuad()
-{
-}
 
 bool ScreenQuad::Initialize(ID3D11Device *device, int screenWidth, int screenHeight)
 {
