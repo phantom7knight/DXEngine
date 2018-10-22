@@ -36,6 +36,7 @@ using namespace DirectX;
 #include "DeferredShaderClass.h"
 #include "ScreenQuad.h"
 #include "ShaderStructDefs.h"
+#include "SharedDefs.h"
 
 //Constants
 
@@ -53,6 +54,8 @@ const float SCREEN_DEPTH = 1000.0f;
 #define ScreenHeight	500
 
 #define  PI_	3.14
+
+
 
 
 // Position of all the data stuff

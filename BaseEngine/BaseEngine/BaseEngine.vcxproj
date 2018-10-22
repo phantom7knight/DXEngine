@@ -151,6 +151,7 @@
     <ClCompile Include="textureshaderclass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SharedDefs.h" />
     <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ShaderStructDefs.h" />
     <ClInclude Include="ScreenQuadShaderClass.h" />
     <ClInclude Include="DeferredShaderClass.h" />

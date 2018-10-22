@@ -1,5 +1,5 @@
 
-#include "ShaderStructDefs.h"
+//#include "ShaderStructDefs.h"
 
 //============================================
 //Textures
@@ -45,8 +45,18 @@ struct PixelInputType
 };
 
 
+
+struct PixelOutputType
+{
+	float4 color  : SV_Target0;
+	float4 normal : SV_Target1;
+
+};
+
+
 float4 LightPixelShader(PixelInputType input) : SV_TARGET
 {
+	
 	//float4 texturecolor;
 	float3 lightDir;
 	float  lightIntensity;

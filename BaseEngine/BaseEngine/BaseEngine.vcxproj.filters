@@ -119,6 +119,9 @@
     <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ShaderStructDefs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SharedDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Deferred.vs" />
