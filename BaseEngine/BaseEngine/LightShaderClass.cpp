@@ -121,7 +121,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 #endif // DEFERRED_RENDERING
 
 
-#ifdef FWD_RENDERING
+#ifdef FWD_RENDERDING
 
 	D3D11_INPUT_ELEMENT_DESC polygonLayout[3];
 

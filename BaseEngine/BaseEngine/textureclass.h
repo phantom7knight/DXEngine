@@ -24,18 +24,22 @@ public:
 	~TextureClass();
 
 	//Loads the texture
-	bool Initialize(ID3D11Device*, ID3D11DeviceContext* deviceContext, char*);
+	//bool Initialize(ID3D11Device*, ID3D11DeviceContext* deviceContext, char*);
+	bool Initialize(ID3D11Device*, WCHAR*);
 	void Shutdown();
 
-	ID3D11ShaderResourceView* GetTexture();
+	ID3D11Resource* GetTexture();
+	ID3D11ShaderResourceView* GetTextureView();
 
 private:
 
-	bool LoadTarga(char*, int&, int&);
+	//bool LoadTarga(char*, int&, int&);
 
-	unsigned char* m_targaData;
-	ID3D11Texture2D* m_texture;
+	//unsigned char* m_targaData;
+	//ID3D11Texture2D* m_texture;
+	ID3D11Resource* m_texture;
 	ID3D11ShaderResourceView* m_textureView;
 };
+
 
 #endif

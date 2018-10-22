@@ -325,6 +325,10 @@ bool DeferredShaderClass::SetShaderParameters(ID3D11DeviceContext *deviceContext
 
 	deviceContext->VSSetConstantBuffers(bufferNumber, 1, &m_matrixBuffer);
 	deviceContext->PSSetShaderResources(0, 1, &texture);
+	/////////////////
+	//for normals////
+	/////////////////
+	//deviceContext->PSSetShaderResources(0, 1, &texture);
 
 	result = deviceContext->Map(m_camerabuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	if (FAILED(result))

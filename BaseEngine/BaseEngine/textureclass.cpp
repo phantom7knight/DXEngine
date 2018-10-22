@@ -3,9 +3,9 @@
 
 TextureClass::TextureClass()
 {
-	m_targaData = 0;
+	//m_targaData = 0;
 	m_texture = 0;
-	m_textureView = 0;
+	//m_textureView = 0;
 }
 
 
@@ -18,7 +18,7 @@ TextureClass::~TextureClass()
 {
 }
 
-bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename)
+/*bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, char* filename)
 {
 	bool result;
 	int height, width;
@@ -73,27 +73,44 @@ bool TextureClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceC
 
 	return true;
 }
+*/
+
+
+bool TextureClass::Initialize(ID3D11Device *device, WCHAR *filename)
+{
+	HRESULT result;
+
+	result = CreateWICTextureFromFile(device, filename, nullptr, &m_textureView);
+
+	if (FAILED(result))
+	{
+		return false;
+	}
+
+
+	return true;
+}
 
 void TextureClass::Shutdown()
 {
 	Safe_Release(m_textureView);
-	Safe_Release(m_texture);
+	//Safe_Release(m_texture);
 
-	if (m_targaData)
-	{
-		delete[] m_targaData;
-		m_targaData = 0;
-	}
 
 	return;
 }
 
-ID3D11ShaderResourceView* TextureClass::GetTexture()
+ID3D11Resource* TextureClass::GetTexture()
+{
+	return m_texture;
+}
+
+ID3D11ShaderResourceView * TextureClass::GetTextureView()
 {
 	return m_textureView;
 }
 
-bool TextureClass::LoadTarga(char* filename, int& height, int& width)
+/*bool TextureClass::LoadTarga(char* filename, int& height, int& width)
 {
 	int error, bpp, imageSize, index, i, j, k;
 	FILE* filePtr;
@@ -176,3 +193,6 @@ bool TextureClass::LoadTarga(char* filename, int& height, int& width)
 
 	return true;
 }
+
+
+*/

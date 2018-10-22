@@ -151,6 +151,7 @@
     <ClCompile Include="textureshaderclass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ShaderStructDefs.h" />
     <ClInclude Include="ScreenQuadShaderClass.h" />
     <ClInclude Include="DeferredShaderClass.h" />
     <ClInclude Include="DeferredBuffersClass.h" />
@@ -171,6 +172,7 @@
   <ItemGroup>
     <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\SpecularLight.ps" />
     <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\data\Shaders\SpecularLight.vs" />
+    <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\packages.config" />
     <None Include="ScreenQuad.ps" />
     <None Include="ScreenQuad.vs" />
     <None Include="data\Shaders\color.ps" />
@@ -188,5 +190,12 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtk_uwp.2018.8.18.2\build\native\directxtk_uwp.targets" Condition="Exists('..\packages\directxtk_uwp.2018.8.18.2\build\native\directxtk_uwp.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\directxtk_uwp.2018.8.18.2\build\native\directxtk_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_uwp.2018.8.18.2\build\native\directxtk_uwp.targets'))" />
+  </Target>
 </Project>

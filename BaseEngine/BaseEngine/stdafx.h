@@ -19,6 +19,7 @@
 #include <d3d11.h>
 #include <DirectXMath.h>
 #include <fstream>
+#include <WICTextureLoader.h>
 
 using namespace std;
 using namespace DirectX;
@@ -34,6 +35,7 @@ using namespace DirectX;
 #include "DeferredBuffersClass.h"
 #include "DeferredShaderClass.h"
 #include "ScreenQuad.h"
+#include "ShaderStructDefs.h"
 
 //Constants
 

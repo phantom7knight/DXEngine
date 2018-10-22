@@ -67,7 +67,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 		return false;
 	}
 
-	result = m_Model->Initialize(m_D3D->GetDevice(),m_D3D->GetDeviceContext() ,(char*)"../BaseEngine/data/stone01.tga");
+	result = m_Model->Initialize(m_D3D->GetDevice(), (WCHAR*)L"../BaseEngine/data/rock.png");
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object", L"Error", MB_OK);
@@ -236,7 +236,7 @@ void GraphicsClass::Shutdown()
 
 bool GraphicsClass::Frame()
 {
-	bool result;
+	bool result = false;
 	static float rotation = 0.0f;
 
 	rotation += (float)PI_ *0.0051f;
@@ -253,7 +253,7 @@ bool GraphicsClass::Frame()
 #endif // DEFERRED_RENDERING
 
 
-#ifdef FWD_RENDERING
+#ifdef FWD_RENDERDING
 	
 	result = Render(rotation);
 
@@ -283,7 +283,7 @@ bool GraphicsClass::FirstPass(float rotation)
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
-	worldMatrix = XMMatrixRotationY(rotation);
+	worldMatrix = XMMatrixRotationY(rotation);	//same as model matrix
 
 	m_Model->Render(m_D3D->GetDeviceContext());
 
@@ -305,34 +305,36 @@ bool GraphicsClass::DeferredRender(float rotation)
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	bool result;
 
-	//Obtain G-Buffer or First Pass
+	//Obtain G-Buffer Pass or First Pass
 
 	result = FirstPass(rotation);
 	if (!result) 
 		return false;
 	
+
 	//Clear the Screen
-	m_D3D->BeginScene(0.0f, 1.0f, 0.0f, 1.0f);		//Which calls the Clear color function
+	m_D3D->BeginScene(0.0f, 0.5f, 0.5f, 1.0f);		//Which calls the Clear color function
 
 	
 
-	//m_Camera->Render();
+	m_Camera->Render();
 
 	//Get MVP matrix
 	m_D3D->GetWorldMatrix(worldMatrix);
 	m_Camera->GetBaseViewMatrix(viewMatrix);
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
+	//Depth Testing Off
 	m_D3D->TurnZBufferOff();
 	
 	//For Rotation
 	worldMatrix = XMMatrixRotationY(rotation);
 
 
-	//m_ScreenQuad->Render(m_D3D->GetDeviceContext());
+	m_ScreenQuad->Render(m_D3D->GetDeviceContext());
 
 	//Render whichever model which we wamt to use ex: here triangle
-	m_Model->Render(m_D3D->GetDeviceContext());
+	//m_Model->Render(m_D3D->GetDeviceContext());
 
 	 m_LightShader->Render(m_D3D->GetDeviceContext(), m_ScreenQuad->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
 		m_DeferredBuffer->GetShaderResourceView(0), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),

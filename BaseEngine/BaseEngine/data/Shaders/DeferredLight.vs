@@ -12,6 +12,7 @@ cbuffer MatrixBuffer
 //============================================
 //Camera Constant Buffer
 //============================================
+
 cbuffer CameraBuffer
 {
 	float3 cameraPostion;	
