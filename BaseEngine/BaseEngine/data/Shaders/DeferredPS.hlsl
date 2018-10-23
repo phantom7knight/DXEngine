@@ -29,7 +29,7 @@ PixelOutputType DeferredPixelShader(PixelInputType input) //: SV_TARGET0
 {
 	PixelOutputType output;
 
-    output.color = (input.fragPos); //
+    output.color = shaderTexture.Sample(SampleTypeWrap, input.tex); //(input.fragPos); 
     //shaderTexture.Sample(SampleTypeWrap, input.tex);
 	output.normal = float4(input.normal,1.0f);
 

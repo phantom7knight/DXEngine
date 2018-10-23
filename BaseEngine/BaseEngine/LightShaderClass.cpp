@@ -289,7 +289,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 
 #endif // FWD_RENDERDING
 
-
+	
 	//============================================================
 	//Light Constant Buffer
 	//============================================================
@@ -321,7 +321,14 @@ void LightShaderClass::ShutdownShader()
 	Safe_Release(m_layout);
 	Safe_Release(m_pixelShader);
 	Safe_Release(m_vertexShader);
+
+#ifdef FWD_RENDERING
+
 	Safe_Release(m_camerabuffer);
+
+#endif // DEFERRED_RENDERING
+
+
 
 	return;
 }

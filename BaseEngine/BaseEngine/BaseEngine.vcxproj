@@ -174,8 +174,6 @@
     <None Include="data\Shaders\SpecularLightPS.hlsl" />
     <None Include="data\Shaders\SpecularLightVS.hlsl" />
     <None Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\packages.config" />
-    <None Include="ScreenQuad.ps" />
-    <None Include="ScreenQuad.vs" />
     <None Include="data\Shaders\color.ps" />
     <None Include="data\Shaders\color.vs" />
     <None Include="data\Shaders\DeferredPS.hlsl" />
