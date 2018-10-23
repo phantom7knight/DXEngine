@@ -1,3 +1,6 @@
+#define PointLights
+
+
 //============================================
 //Constant Buffer
 //============================================
@@ -7,7 +10,6 @@ cbuffer MatrixBuffer
 	matrix viewMatrix;
 	matrix projectionMatrix;
 };
-
 
 //============================================
 //Camera Constant Buffer
@@ -32,6 +34,14 @@ struct VertexInputType
 	//float3 normal	: NORMAL;
 
 };
+
+//struct Point_Lights
+//{
+//    float _linear;
+//    float _quadratic;
+//    float radius;
+
+//};
 
 
 struct PixelInputType
@@ -58,6 +68,7 @@ PixelInputType LightVertexShader(VertexInputType input)
 	output.position = mul(output.position , projectionMatrix);
 	
 	output.tex = input.tex;
+    
 
 	//output.normal = mul(input.normal, (float3x3)worldMatrix);
 	//output.normal = normalize(output.normal);

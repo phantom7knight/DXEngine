@@ -38,6 +38,7 @@ using namespace DirectX;
 #include "ScreenQuad.h"
 #include "ShaderStructDefs.h"
 #include "SharedDefs.h"
+#include "ImguiManager.h"
 
 //Constants
 
