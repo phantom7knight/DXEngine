@@ -26,7 +26,7 @@ bool DeferredShaderClass::Initialize(ID3D11Device *device, HWND hwnd)
 {
 	bool result;
 
-	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/Deferred.vs", (WCHAR*)L"../BaseEngine/data/Shaders/Deferred.ps");
+	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/DeferredVS.hlsl", (WCHAR*)L"../BaseEngine/data/Shaders/DeferredPS.hlsl");
 	if (!result)
 	{
 		return false;
@@ -174,13 +174,13 @@ bool DeferredShaderClass::InitializeShader(ID3D11Device *device, HWND hwnd, WCHA
 	pixelShaderBuffer = 0;
 
 
-	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.MipLODBias = 0.0f;
 	samplerDesc.MaxAnisotropy = 1;
-	samplerDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+	samplerDesc.ComparisonFunc = D3D11_COMPARISON_LESS_EQUAL;
 	samplerDesc.BorderColor[0] = 0;
 	samplerDesc.BorderColor[1] = 0;
 	samplerDesc.BorderColor[2] = 0;

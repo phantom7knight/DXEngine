@@ -20,6 +20,7 @@ struct PixelInputType
 	float4 position : SV_POSITION;
 	float2 tex : TEXCOORD0;
 	float3 normal : NORMAL;
+    float4 fragPos :POSITION0;
 };
 
 
@@ -29,7 +30,9 @@ PixelInputType DeferredVertexShader(VertexInputType input)
 
 	input.position.w=1.0f;
 
+  
 	output.position=mul(input.position, worldMatrix);
+    output.fragPos = output.position;
 	output.position=mul(output.position, viewMatrix);
 	output.position=mul(output.position, projectionMatrix);
 

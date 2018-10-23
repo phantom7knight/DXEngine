@@ -276,7 +276,7 @@ bool GraphicsClass::FirstPass(float rotation)
 	m_DeferredBuffer->SetRenderTargets(m_D3D->GetDeviceContext());
 
 	//clear render buffers
-	m_DeferredBuffer->CleanRenderTargets(m_D3D->GetDeviceContext(), 0.0f, 0.5f, 0.5f, 1.0f);
+	m_DeferredBuffer->CleanRenderTargets(m_D3D->GetDeviceContext(), 0.0f, 0.0f, 0.0f, 1.0f);
 
 
 	m_D3D->GetWorldMatrix(worldMatrix);
@@ -313,7 +313,7 @@ bool GraphicsClass::DeferredRender(float rotation)
 	
 
 	//Clear the Screen
-	m_D3D->BeginScene(0.0f, 0.5f, 0.5f, 1.0f);		//Which calls the Clear color function
+	m_D3D->BeginScene(1.0f, 0.5f, 0.5f, 1.0f);		//Which calls the Clear color function
 
 	
 
@@ -322,13 +322,13 @@ bool GraphicsClass::DeferredRender(float rotation)
 	//Get MVP matrix
 	m_D3D->GetWorldMatrix(worldMatrix);
 	m_Camera->GetBaseViewMatrix(viewMatrix);
-	m_D3D->GetProjectionMatrix(projectionMatrix);
+	m_D3D->GetOrthoMatrix(projectionMatrix);
 
 	//Depth Testing Off
 	m_D3D->TurnZBufferOff();
 	
 	//For Rotation
-	worldMatrix = XMMatrixRotationY(rotation);
+	//worldMatrix = XMMatrixRotationY(rotation);
 
 
 	m_ScreenQuad->Render(m_D3D->GetDeviceContext());

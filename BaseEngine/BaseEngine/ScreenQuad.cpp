@@ -57,6 +57,7 @@ bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quad
 	//Result_Check(!indeces);
 
 
+
 	#pragma region ScreenQuadParamerters
 	//First Triangle
 	VertexCB[0].position = XMFLOAT3(left, top, 0.0f);
@@ -102,13 +103,13 @@ bool ScreenQuad::InitializeBuffers(ID3D11Device *device, int quadwidth, int quad
 		return false;
 
 	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	indexBufferDesc.ByteWidth = sizeof(VertexType) * m_vertexCount;
+	indexBufferDesc.ByteWidth = sizeof(unsigned long) * m_vertexCount;
 	indexBufferDesc.CPUAccessFlags = 0;
 	indexBufferDesc.MiscFlags = 0;
 	indexBufferDesc.StructureByteStride = 0;
 	indexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
 
-	indexData.pSysMem = VertexCB;
+	indexData.pSysMem = indeces;
 	indexData.SysMemPitch = 0;
 	indexData.SysMemSlicePitch = 0;
 

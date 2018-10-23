@@ -67,6 +67,8 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
 	//For color render target
 	color = shaderTexture.Sample(SampleType,input.tex);
+
+	return color;
 	
 	//For the normal render target
 	normals = normalTexture.Sample(SampleType,input.tex);
@@ -75,9 +77,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
 	lightIntensity = saturate(dot(normals.xyz,lightDir));
 
-	color = saturate(color * lightIntensity);
-
-	return color;
+    //color = saturate(color * lightIntensity);
 
 
 

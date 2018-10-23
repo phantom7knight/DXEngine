@@ -24,7 +24,7 @@ bool ScreenQuadShaderClass::Initialize(ID3D11Device* device, HWND hwnd)
 {
 	bool result;
 
-	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/ScreenQuad.vs", (WCHAR*)L"../BaseEngine/data/Shaders/ScreenQuad.ps");
+	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/ScreenQuadVS.hlsl", (WCHAR*)L"../BaseEngine/data/Shaders/ScreenQuadPS.hlsl");
 	if (!result)
 	{
 		return false;

@@ -30,8 +30,8 @@ D3DClass::~D3DClass()
 bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
 {
 	HRESULT result;
-	IDXGIFactory* factory;
-	IDXGIAdapter* adapter;
+	IDXGIFactory5* factory;
+	IDXGIAdapter3* adapter;
 	IDXGIOutput* adapterOutput;
 	unsigned int numModes, i, numerator, denominator;
 	unsigned long long stringLength;
@@ -51,17 +51,18 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 
 	m_vsync_enabled = vsync;
 
-	result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&factory);
+	result = CreateDXGIFactory2(DXGI_CREATE_FACTORY_DEBUG,__uuidof(IDXGIFactory5), (void**)&factory);
 	if (FAILED(result))
 	{
 		return false;
 	}
-
-	result = factory->EnumAdapters(0, &adapter);
+	IDXGIAdapter* tempadapter = nullptr;
+	result = factory->EnumAdapters(0, &tempadapter);
 	if (FAILED(result))
 	{
 		return false;
 	}
+	tempadapter->QueryInterface< IDXGIAdapter3>(&adapter);
 
 	result = adapter->EnumOutputs(0, &adapterOutput);
 	if (FAILED(result))
@@ -169,9 +170,9 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
-	swapChainDesc.Flags = 0;
+	swapChainDesc.Flags = D3D11_CREATE_DEVICE_DEBUG;
 
-	featureLevel = D3D_FEATURE_LEVEL_11_0;	//This is used to set the directx version
+	featureLevel = D3D_FEATURE_LEVEL_11_1;	//This is used to set the directx version
 
 	result = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, &featureLevel, 1, D3D11_SDK_VERSION, &swapChainDesc, &m_swapChain, &m_device, NULL, &m_deviceContext);
 	if (FAILED(result))
@@ -179,7 +180,14 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 		return false;
 	}
 
-	//Get's pointer to the back buffer
+	/*ID3D11InfoQueue* infoqueue = nullptr;
+	result = m_device->QueryInterface(__uuidof(ID3D11InfoQueue), (void**)&infoqueue);
+
+	infoqueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_CORRUPTION, true);
+	infoqueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_ERROR, true);
+	infoqueue->Release();*/
+
+	//Get's pointer to the back bufferadap
 	result = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBufferPtr);
 	if (FAILED(result))
 	{

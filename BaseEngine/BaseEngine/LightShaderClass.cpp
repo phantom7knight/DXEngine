@@ -33,13 +33,14 @@ bool LightShaderClass::Initialize(ID3D11Device* device, HWND hwnd)
 
 #ifdef DEFERRED_RENDERING
 	
-	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/DeferredLight.vs", (WCHAR*)L"../BaseEngine/data/Shaders/DeferredLight.ps");
+	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/DeferredLightVS.hlsl", (WCHAR*)L"../BaseEngine/data/Shaders/DeferredLightPS.hlsl");
 
 #endif // DEFERRED_RENDERING
 
 #ifdef FWD_RENDERDING
 	
-	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/SpecularLight.vs", (WCHAR*)L"../BaseEngine/data/Shaders/SpecularLight.ps");
+	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/SpecularLightVS.hlsl", (WCHAR*)L"../BaseEngine/data/Shaders/SpecularLightPS.hlsl");
+	//result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/LightVS.hlsl", (WCHAR*)L"../BaseEngine/data/Shaders/LightPS.hlsl");
 
 #endif // FWD_RENDERDING
 

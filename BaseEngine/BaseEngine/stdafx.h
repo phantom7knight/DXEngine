@@ -17,6 +17,7 @@
 
 #include <Windows.h>
 #include <d3d11.h>
+#include <dxgi1_5.h>
 #include <DirectXMath.h>
 #include <fstream>
 #include <WICTextureLoader.h>

@@ -24,7 +24,7 @@ bool TextureShaderClass::Initialize(ID3D11Device* device, HWND hwnd)
 {
 	bool result;
 
-	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/texture.vs", (WCHAR*)L"../BaseEngine/data/Shaders/texture.ps");
+	result = InitializeShader(device, hwnd, (WCHAR*)L"../BaseEngine/data/Shaders/textureVS.hlsl", (WCHAR*)L"../BaseEngine/data/Shaders/texturePS.hlsl");
 	if (!result)
 	{
 		return false;
