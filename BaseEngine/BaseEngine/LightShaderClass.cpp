@@ -322,7 +322,7 @@ void LightShaderClass::ShutdownShader()
 	Safe_Release(m_pixelShader);
 	Safe_Release(m_vertexShader);
 
-#ifdef FWD_RENDERING
+#ifdef FWD_RENDERDING
 
 	Safe_Release(m_camerabuffer);
 
