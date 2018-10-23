@@ -66,7 +66,7 @@
     <ClCompile Include="ScreenQuadShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ImguiManager.cpp">
+    <ClCompile Include="ImguiManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,13 +119,13 @@
     <ClInclude Include="ScreenQuadShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ShaderStructDefs.h">
+    <ClInclude Include="ShaderStructDefs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SharedDefs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\BaseEngine\ImguiManager.h">
+    <ClInclude Include="ImguiManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
