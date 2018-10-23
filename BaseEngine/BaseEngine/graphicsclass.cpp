@@ -246,6 +246,36 @@ bool GraphicsClass::Frame()
 		rotation -= 360.0f;
 	}
 	
+
+/*#pragma region CamerControls
+	if (m_Input->IsKeyDown(VK_UP))
+	{
+		Camera_PosY += 0.1f;
+	}
+	if (m_Input->IsKeyDown(VK_DOWN))
+	{
+		Camera_PosY -= 0.1f;
+	}
+	if (m_Input->IsKeyDown(VK_LEFT))
+	{
+		Camera_PosX -= 0.1f;
+	}
+	if (m_Input->IsKeyDown(VK_RIGHT))
+	{
+		Camera_PosX += 0.1f;
+	}
+
+	//Reset the Camera Position
+	if (m_Input->IsKeyDown(VK_SPACE))
+	{
+		Camera_PosX = 0.0f;
+		Camera_PosY = 0.0f;
+		Camera_PosZ = -5.0f;
+	}
+#pragma endregion*/
+
+
+
 #ifdef DEFERRED_RENDERING
 	
 	result = DeferredRender(rotation);
