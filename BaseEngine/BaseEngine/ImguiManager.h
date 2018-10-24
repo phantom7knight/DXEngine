@@ -1,9 +1,6 @@
 #pragma once
 
 
-
-
-
 class ImguiManager
 {
 private:
@@ -14,7 +11,7 @@ public:
 	ImguiManager();
 	~ImguiManager();
 
-	void Init();
+	void Init(HWND handle);
 	void Update();
 	void Destroy();
 

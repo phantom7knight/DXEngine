@@ -27,7 +27,7 @@ public:
 
 	bool Initialize(int, int, HWND, XMFLOAT3 );
 	void Shutdown();
-	bool Frame();
+	bool Frame(HWND handle);
 
 	//RenderScreenToTexture
 	bool  FirstPass(float rotation);

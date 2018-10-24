@@ -234,7 +234,7 @@ void GraphicsClass::Shutdown()
 	return;
 }
 
-bool GraphicsClass::Frame()
+bool GraphicsClass::Frame(HWND handle)
 {
 	bool result = false;
 	static float rotation = 0.0f;
@@ -274,6 +274,7 @@ bool GraphicsClass::Frame()
 	}
 #pragma endregion*/
 
+	ImguiManager::getInstance()->Init(handle);
 
 
 #ifdef DEFERRED_RENDERING

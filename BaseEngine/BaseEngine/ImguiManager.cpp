@@ -22,16 +22,17 @@ ImguiManager::~ImguiManager()
 {
 }
 
-void ImguiManager::Init()
+void ImguiManager::Init( HWND handle)
 {
+	//IMGUI_CHECKVERSION();
 	//ImGui::CreateContext();
 	//ImGuiIO& io = ImGui::GetIO(); (void)io;
-	////io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
-	//
-	////ImGui_ImplWin32_Init(m_d3dobj.);
-	////ImGui_ImplDX11_Init(g_pd3dDevice, g_pd3dDeviceContext);
-	//
-	//// Setup style
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+	
+	//ImGui_ImplWin32_Init(handle);
+	//ImGui_ImplDX11_Init(m_d3dobj.GetDevice(), m_d3dobj.GetDeviceContext());
+	
+	// Setup style
 	//ImGui::StyleColorsDark();
 }
 

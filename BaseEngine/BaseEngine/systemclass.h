@@ -21,10 +21,15 @@ public:
 	void Shutdown(void);
 	void Run(void);
 
+	inline HWND getHandle()
+	{
+		return m_hwnd;
+	}
+
 	LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 
 private:
-	bool Frame();
+	bool Frame(HWND handle);
 	void InitializeWindows(int&, int&);
 	void ShutdownWindows();
 

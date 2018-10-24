@@ -113,7 +113,7 @@ void SystemClass::Run()
 		else
 		{
 			//Main loop Update stuff goes here
-			result = Frame();
+			result = Frame(getHandle());
 			if (!result)
 			{
 				done = true;
@@ -123,7 +123,7 @@ void SystemClass::Run()
 	return;
 }
 
-bool SystemClass::Frame()
+bool SystemClass::Frame( HWND handle)
 {
 	bool result;
 
@@ -159,7 +159,7 @@ bool SystemClass::Frame()
 	}
 #pragma endregion
 	
-	result = m_Graphics->Frame();
+	result = m_Graphics->Frame(handle);
 	if (!result)
 	{
 		return false;
@@ -167,8 +167,16 @@ bool SystemClass::Frame()
 	return true;
 }
 
+//extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam);
+
+
 LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 {
+	/*if (ImGui_ImplWin32_WndProcHandler(hwnd, umsg, wparam, lparam))
+	{
+		return true;
+	}*/
+
 	switch (umsg)
 	{
 	case WM_KEYDOWN:
