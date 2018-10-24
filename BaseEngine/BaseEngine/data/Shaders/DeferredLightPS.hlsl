@@ -101,7 +101,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	texturecolor  = shaderTexture.Sample(SampleType,input.tex);
     normals = normalTexture.Sample(SampleType, input.tex);
 
-    specular = float4(0.0f, 0.0f, 0.0f, 0.0f);
+    specular = float4(0.0f, 0.0f, 0.0f, 1.0f);
 
     color = ambientColor;
 
