@@ -1,9 +1,7 @@
 
 
-
+//The initial texture which we send
 Texture2D shaderTexture : register(t0);
-//TO DO :REMOVE IF ERROR
-//Texture2D normalTexture : register(t1);
 
 SamplerState SampleTypeWrap : register(s0);
 
@@ -19,9 +17,9 @@ struct PixelInputType
 
 struct PixelOutputType
 {
-	float4 gcolor : SV_Target0;
-	float4 gnormal: SV_Target1;
-    //float4 gposition : SV_Target2;
+	float4 gcolor           : SV_Target0;
+	float4 gnormal          : SV_Target1;
+    //float4 gposition      : SV_Target2;
     //float4 gSpecularcolor : SV_Target3;
 };
 

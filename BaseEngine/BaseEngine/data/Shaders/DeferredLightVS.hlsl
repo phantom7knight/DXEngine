@@ -35,14 +35,6 @@ struct VertexInputType
 
 };
 
-//struct Point_Lights
-//{
-//    float _linear;
-//    float _quadratic;
-//    float radius;
-
-//};
-
 
 struct PixelInputType
 {
@@ -82,3 +74,14 @@ PixelInputType LightVertexShader(VertexInputType input)
 	return output;
 
 }
+
+
+
+//struct Point_Lights
+//{
+//    float _linear;
+//    float _quadratic;
+//    float radius;
+
+//};
+

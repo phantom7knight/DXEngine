@@ -31,7 +31,7 @@ cbuffer LightBuffer
 {
 	float4 ambientColor;
 	float4 diffuseColor;
-	float3 lightDirection;
+	float3 lightDirection;  //camera position
 	float  specularPower;
 	float4 specularColor;
 	
@@ -70,6 +70,20 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	float4 specular;
 	float4 normals;
 
+
+    
+    //=================================================================
+    //Light Testing
+    //=================================================================
+
+    normals     = normalize(float4(input.normal,1.0f));
+    lightDir    = normalize()
+
+
+
+
+
+
     //=================================================================
     //Working Deferred Lighting
     //=================================================================
@@ -98,12 +112,13 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	//Unlock this for the specular light
 	//=================================================================
 
-	texturecolor  = shaderTexture.Sample(SampleType,input.tex);
-    normals = normalTexture.Sample(SampleType, input.tex);
-
-    specular = float4(0.0f, 0.0f, 0.0f, 1.0f);
+	/*texturecolor  = shaderTexture.Sample(SampleType,input.tex);
+   // normals = normalTexture.Sample(SampleType, input.tex);
+    normals = float4(input.normal,1.0f);
+    specular = specularColor;//float4(0.0f, 1.0f, 0.0f, 1.0f);
 
     color = ambientColor;
+    
 
     lightDir = -lightDirection;
 
@@ -112,7 +127,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     lightIntensity = saturate(dot(normals.xyz, lightDir));
 	
     color = saturate(diffuseColor * lightIntensity);
-
+    
     if (lightIntensity > 0.0f)
     {
         color += (diffuseColor * lightIntensity);
@@ -122,16 +137,15 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
         specular = pow(saturate(dot(reflection, input.viewDirection)), specularPower);
     }
 
-    //If texture works then enable it 
+    //=======================================
+    //TO DO :If texture works then enable it 
     //color = color * texturecolor;
+    //=======================================
 
     color = saturate(color + specular);
-	return color;
+	return color;*/
 	
 	//=================================================================
 	//=================================================================	
-
-
-
 
 }
