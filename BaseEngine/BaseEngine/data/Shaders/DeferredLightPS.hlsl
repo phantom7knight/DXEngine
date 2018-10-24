@@ -5,9 +5,12 @@
 //Textures
 //============================================
 
-Texture2D shaderTexture : register(t0);	//Color texture
-Texture2D normalTexture : register(t1);
+Texture2D shaderTexture : register(t0);	//Color Texture
+Texture2D normalTexture : register(t1); //Normal Texture
 
+//TO DO :Add other textures for project
+//Texture2D specularTexture : register(t2);   //Specular Texture
+//Texture2D DiffuseTexture  : register(t3);   //Diffuse Texture
 
 //============================================
 //Sample State
@@ -21,12 +24,12 @@ SamplerState SampleType : register(s0);
 //============================================
 cbuffer LightBuffer
 {
-	//float4 ambientColor;
-	//float4 diffuseColor;
+	float4 ambientColor;
+	float4 diffuseColor;
 	float3 lightDirection;
-	float padding;
-	//float specularPower;
-	//float4 specularColor;
+	float specularPower;
+	float4 specularColor;
+	
 
 };
 
@@ -39,25 +42,26 @@ struct PixelInputType
 	
 	float4 position		 : SV_POSITION;
 	float2 tex			 : TEXCOORD0;
-	//float3 normal		 : NORMAL;
-	//float3 viewDirection : TEXCOORD1;
+	float3 normal		 : NORMAL;
+	float3 viewDirection : TEXCOORD1;
 	
 };
 
 
 
-struct PixelOutputType
-{
-	float4 color  : SV_Target0;
-	float4 normal : SV_Target1;
-
-};
+//struct PixelOutputType
+//{
+//	float4 color  : SV_Target0;
+//	//float4 normal : SV_Target1;
+//    //float4 position : SV_Target2;
+//    //float4 gSpecularcolor : SV_Target3;
+//};
 
 
 float4 LightPixelShader(PixelInputType input) : SV_TARGET
 {
 	
-	//float4 texturecolor;
+	float4 texturecolor;
 	float3 lightDir;
 	float  lightIntensity;
 	float4 color;
@@ -67,8 +71,8 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
 	//For color render target
 	color = shaderTexture.Sample(SampleType,input.tex);
-
-	return color;
+    
+	//return color;
 	
 	//For the normal render target
 	normals = normalTexture.Sample(SampleType,input.tex);
@@ -77,7 +81,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
 	lightIntensity = saturate(dot(normals.xyz,lightDir));
 
-    //color = saturate(color * lightIntensity);
+    color = saturate(color * lightIntensity);
 
 
 
@@ -89,31 +93,32 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	//Unlock this for the specular light
 	//=================================================================
 
-	/*//texturecolor  = shaderTexture.Sample(SampleType,input.tex);
-	normals = normalTexture.Sample(SampleType,input.tex);
+	texturecolor  = shaderTexture.Sample(SampleType,input.tex);
+    normals = normalTexture.Sample(SampleType, input.tex);
 
-	//specular = float4(0.0f,0.0f,0.0f,0.0f);
+    specular = float4(0.0f, 0.0f, 0.0f, 0.0f);
 
-	//color = ambientColor;
+    color = ambientColor;
 
-	//lightDir = -lightDirection;
+    lightDir = -lightDirection;
 
-	//Ambient Lighting
-	//lightintensity = saturate(dot(normals.xyz,lightDir));
+   // Ambient Lighting
+
+    lightIntensity = saturate(dot(normals.xyz, lightDir));
 	
-	//color = saturate(diffuseColor * lightintensity);
+    color = saturate(diffuseColor * lightIntensity);
 
-	if(lightintensity > 0.0f)
-	{
-		color += (diffuseColor * lightintensity);
-		color = saturate(color);
+    if (lightIntensity > 0.0f)
+    {
+        color += (diffuseColor * lightIntensity);
+        color = saturate(color);
 
-		reflection = normalize(2* lightintensity * normals.xyz - lightDir);
-		specular = pow(saturate(dot(reflection , input.viewDirection)),specularPower);
-	}
+        reflection = normalize(2 * lightIntensity * normals.xyz - lightDir);
+        specular = pow(saturate(dot(reflection, input.viewDirection)), specularPower);
+    }
 
-	//color = color * texturecolor;
-	//color = saturate(color + specular);*/
+    color = color * texturecolor;
+    color = saturate(color + specular);
 	//return color;
 	
 	//=================================================================

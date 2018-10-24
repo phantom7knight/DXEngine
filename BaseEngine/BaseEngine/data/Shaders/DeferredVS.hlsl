@@ -18,9 +18,9 @@ struct VertexInputType
 struct PixelInputType
 {
 	float4 position : SV_POSITION;
-	float2 tex : TEXCOORD0;
+    float2 tex : TEXCOORD0;
 	float3 normal : NORMAL;
-    float4 fragPos :POSITION0;
+    float4 fragPos : POSITION0;
 };
 
 

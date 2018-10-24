@@ -21,7 +21,7 @@ class LightShaderClass
 		float    padding;
 
 	};
-#ifdef FWD_RENDERDING
+//#ifdef FWD_RENDERDING
 
 	struct LightBufferType
 	{
@@ -31,22 +31,22 @@ class LightShaderClass
 			XMFLOAT3 lightDirection;
 			float	 specularPower;
 			XMFLOAT4 specularColor;
-			//float padding;
+		
 	};
 
-#endif // FWD_RENDERDING
+//#endif // FWD_RENDERDING
 
 
 
-#ifdef DEFERRED_RENDERING
-
-	struct LightBufferType
-	{
-		XMFLOAT3 lightDirection;
-		float padding;
-	};
-
-#endif // DEFERRED_RENDERING
+//#ifdef DEFERRED_RENDERING
+//
+//	struct LightBufferType
+//	{
+//		XMFLOAT3 lightDirection;
+//		float padding;
+//	};
+//
+//#endif // DEFERRED_RENDERING
 
 
 

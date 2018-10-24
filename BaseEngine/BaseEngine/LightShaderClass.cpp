@@ -117,7 +117,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 	ID3D10Blob* pixelShaderBuffer;
 #ifdef DEFERRED_RENDERING
 
-	D3D11_INPUT_ELEMENT_DESC polygonLayout[2];
+	D3D11_INPUT_ELEMENT_DESC polygonLayout[3];
 
 #endif // DEFERRED_RENDERING
 
@@ -200,7 +200,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 	polygonLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	polygonLayout[1].InstanceDataStepRate = 0;
 
-#ifdef FWD_RENDERDING
+//#ifdef FWD_RENDERDING
 
 	polygonLayout[2].SemanticName = "NORMAL";
 	polygonLayout[2].SemanticIndex = 0;
@@ -210,7 +210,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 	polygonLayout[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 	polygonLayout[2].InstanceDataStepRate = 0;
 
-#endif // FWD_RENDERDING
+//#endif // FWD_RENDERDING
 
 
 	
@@ -271,7 +271,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 	//Camera Constant Buffer
 	//============================================================
 
-#ifdef FWD_RENDERDING
+//#ifdef FWD_RENDERDING
 
 	cameraBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 	cameraBufferDesc.ByteWidth = sizeof(CameraBufferType);
@@ -287,7 +287,7 @@ bool LightShaderClass::InitializeShader(ID3D11Device* device, HWND hwnd, WCHAR* 
 		return false;
 	}
 
-#endif // FWD_RENDERDING
+//#endif // FWD_RENDERDING
 
 	
 	//============================================================
@@ -322,11 +322,11 @@ void LightShaderClass::ShutdownShader()
 	Safe_Release(m_pixelShader);
 	Safe_Release(m_vertexShader);
 
-#ifdef FWD_RENDERDING
+//#ifdef FWD_RENDERDING
 
 	Safe_Release(m_camerabuffer);
 
-#endif // DEFERRED_RENDERING
+//#endif // DEFERRED_RENDERING
 
 
 
@@ -395,15 +395,15 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 	deviceContext->VSSetConstantBuffers(bufferNumber, 1, &m_matrixBuffer);
 	deviceContext->PSSetShaderResources(0, 1, &texture);//color texture
 
-#ifdef DEFERRED_RENDERING
+//#ifdef DEFERRED_RENDERING
 
 	deviceContext->PSSetShaderResources(1, 1, &normaltexture);//normal texture
 
-#endif // DEFERRED_RENDERING
+//#endif // DEFERRED_RENDERING
 
 
 		
-#ifdef FWD_RENDERDING
+//#ifdef FWD_RENDERDING
 
 	result = deviceContext->Map(m_camerabuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	if (FAILED(result))
@@ -423,7 +423,7 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 
 	deviceContext->PSSetConstantBuffers(bufferNumber, 1, &m_camerabuffer);
 
-#endif // FWD_RENDERDING
+//#endif // FWD_RENDERDING
 
 
 
@@ -436,14 +436,14 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 
 	lightPtr = (LightBufferType*)mappedResource.pData;
 
-#ifdef FWD_RENDERDING
+//#ifdef FWD_RENDERDING
 
 	lightPtr->ambientColor		= ambientColor;
 	lightPtr->diffuseColor		= diffuseColor;
 	lightPtr->specularColor		= specularColor;
 	lightPtr->specularPower		= specularPower;
 
-#endif // FWD_RENDERDING
+//#endif // FWD_RENDERDING
 
 	lightPtr->lightDirection	= lightDirection;
 	//lightPtr->padding = 0.0f;
