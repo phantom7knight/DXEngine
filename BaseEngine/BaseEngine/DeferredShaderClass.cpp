@@ -173,7 +173,8 @@ bool DeferredShaderClass::InitializeShader(ID3D11Device *device, HWND hwnd, WCHA
 	pixelShaderBuffer->Release();
 	pixelShaderBuffer = 0;
 
-
+	//This is the is then sampling which we see in the games
+	//Trilinear ,bilinear and Anisotropic Filtering
 	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
