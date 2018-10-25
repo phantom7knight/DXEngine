@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseEngine", "BaseEngine\BaseEngine.vcxproj", "{BE36F274-10AD-487F-986C-2B4727F03D93}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImguiLib", "ImguiLib\ImguiLib.vcxproj", "{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{BE36F274-10AD-487F-986C-2B4727F03D93}.Release|x64.Build.0 = Release|x64
 		{BE36F274-10AD-487F-986C-2B4727F03D93}.Release|x86.ActiveCfg = Release|Win32
 		{BE36F274-10AD-487F-986C-2B4727F03D93}.Release|x86.Build.0 = Release|Win32
+		{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}.Debug|x64.ActiveCfg = Debug|x64
+		{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}.Debug|x64.Build.0 = Debug|x64
+		{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}.Debug|x86.ActiveCfg = Debug|Win32
+		{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}.Debug|x86.Build.0 = Debug|Win32
+		{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}.Release|x64.ActiveCfg = Release|x64
+		{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}.Release|x64.Build.0 = Release|x64
+		{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}.Release|x86.ActiveCfg = Release|Win32
+		{DCCDBECA-6DBA-4210-8604-AF93A2CB70CE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

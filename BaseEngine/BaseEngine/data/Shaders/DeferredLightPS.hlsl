@@ -76,8 +76,8 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     //Light Testing
     //=================================================================
 
-    normals     = normalize(float4(input.normal,1.0f));
-    lightDir    = normalize()
+    //normals     = normalize(float4(input.normal,1.0f));
+    //lightDir    = normalize()
 
 
 
@@ -112,8 +112,8 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	//Unlock this for the specular light
 	//=================================================================
 
-	/*texturecolor  = shaderTexture.Sample(SampleType,input.tex);
-   // normals = normalTexture.Sample(SampleType, input.tex);
+	texturecolor  = shaderTexture.Sample(SampleType,input.tex);
+    normals = normalTexture.Sample(SampleType, input.tex);
     normals = float4(input.normal,1.0f);
     specular = specularColor;//float4(0.0f, 1.0f, 0.0f, 1.0f);
 
@@ -122,7 +122,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
     lightDir = -lightDirection;
 
-   // Ambient Lighting
+    //Ambient Lighting
 
     lightIntensity = saturate(dot(normals.xyz, lightDir));
 	
@@ -143,7 +143,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     //=======================================
 
     color = saturate(color + specular);
-	return color;*/
+	return color;
 	
 	//=================================================================
 	//=================================================================	
