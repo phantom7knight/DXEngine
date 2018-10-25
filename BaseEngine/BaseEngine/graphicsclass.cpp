@@ -274,7 +274,8 @@ bool GraphicsClass::Frame(HWND handle)
 	}
 #pragma endregion*/
 
-	ImguiManager::getInstance()->Init(handle);
+	
+	ImguiManager::getInstance()->Init(handle, m_D3D->GetDevice(), m_D3D->GetDeviceContext());
 
 
 #ifdef DEFERRED_RENDERING

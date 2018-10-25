@@ -167,15 +167,15 @@ bool SystemClass::Frame( HWND handle)
 	return true;
 }
 
-//extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam);
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam);
 
 
 LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 {
-	/*if (ImGui_ImplWin32_WndProcHandler(hwnd, umsg, wparam, lparam))
+	if (ImGui_ImplWin32_WndProcHandler(hwnd, umsg, wparam, lparam))
 	{
 		return true;
-	}*/
+	}
 
 	switch (umsg)
 	{
