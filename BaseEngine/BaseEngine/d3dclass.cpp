@@ -172,7 +172,7 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 
 	swapChainDesc.Flags = D3D11_CREATE_DEVICE_DEBUG;
 
-	featureLevel = D3D_FEATURE_LEVEL_11_1;	//This is used to set the directx version
+	featureLevel = D3D_FEATURE_LEVEL_11_0;	//This is used to set the directx version
 
 	result = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, &featureLevel, 1, D3D11_SDK_VERSION, &swapChainDesc, &m_swapChain, &m_device, NULL, &m_deviceContext);
 	if (FAILED(result))

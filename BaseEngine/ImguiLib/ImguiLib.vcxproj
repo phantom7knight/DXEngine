@@ -115,22 +115,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imconfig.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui_impl_dx11.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui_impl_win32.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui_internal.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imstb_rectpack.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imstb_textedit.h" />
-    <ClInclude Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imstb_truetype.h" />
+    <ClInclude Include="..\ImguiLib\imconfig.h" />
+    <ClInclude Include="..\ImguiLib\imgui.h" />
+    <ClInclude Include="..\ImguiLib\imgui_impl_dx11.h" />
+    <ClInclude Include="..\ImguiLib\imgui_impl_win32.h" />
+    <ClInclude Include="..\ImguiLib\imgui_internal.h" />
+    <ClInclude Include="..\ImguiLib\imstb_rectpack.h" />
+    <ClInclude Include="..\ImguiLib\imstb_textedit.h" />
+    <ClInclude Include="..\ImguiLib\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui_demo.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui_draw.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui_impl_dx11.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui_impl_win32.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\..\Semester%27s\3rd sem\CS 562-Real Time\Engine\DXEngine\BaseEngine\ImguiLib\imgui_widgets.cpp" />
+    <ClCompile Include="..\ImguiLib\imgui.cpp" />
+    <ClCompile Include="..\ImguiLib\imgui_demo.cpp" />
+    <ClCompile Include="..\ImguiLib\imgui_draw.cpp" />
+    <ClCompile Include="..\ImguiLib\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\ImguiLib\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\ImguiLib\imgui_widgets.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
