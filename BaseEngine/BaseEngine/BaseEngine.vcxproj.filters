@@ -130,8 +130,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Deferred.vs" />
-    <None Include="Deferred.ps" />
     <None Include="data\Shaders\color.ps" />
     <None Include="data\Shaders\color.vs" />
     <None Include="..\BaseEngine\BaseEngine\packages.config" />

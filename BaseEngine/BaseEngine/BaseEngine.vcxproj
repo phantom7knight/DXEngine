@@ -197,8 +197,6 @@
     <None Include="data\Shaders\LightVS.hlsl" />
     <None Include="data\Shaders\texturePS.hlsl" />
     <None Include="data\Shaders\textureVS.hlsl" />
-    <None Include="Deferred.ps" />
-    <None Include="Deferred.vs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImguiLib\ImguiLib.vcxproj">
