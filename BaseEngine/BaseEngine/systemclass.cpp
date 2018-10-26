@@ -7,7 +7,7 @@ SystemClass::SystemClass()
 	m_Input = 0;
 	m_Camera = 0;
 	m_Graphics = 0;
-	LightPos = XMFLOAT3(-1.0f, 0.0f, 5.0f);
+	LightPos = XMFLOAT3(+1.0f, 0.0f, 0.0f);
 }
 
 SystemClass::SystemClass(const SystemClass& other)
@@ -99,7 +99,7 @@ void SystemClass::Run()
 	while (!done)
 	{
 
-		//m_Graphics->Update();
+		m_Graphics->Update();
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
@@ -149,6 +149,14 @@ bool SystemClass::Frame( HWND handle)
 	if (m_Input->IsKeyDown(VK_RIGHT))
 	{
 		m_Graphics->Camera_PosX += 0.1f;
+	}
+	if (m_Input->IsKeyDown(VK_CONTROL))
+	{
+		m_Graphics->Camera_PosZ -= 0.1f;
+	}
+	if (m_Input->IsKeyDown(VK_SHIFT))
+	{
+		m_Graphics->Camera_PosZ += 0.1f;
 	}
 
 	//Reset the Camera Position

@@ -393,11 +393,13 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 	bufferNumber = 0;
 
 	deviceContext->VSSetConstantBuffers(bufferNumber, 1, &m_matrixBuffer);
-	deviceContext->PSSetShaderResources(0, 1, &texture);//color texture
+	deviceContext->PSSetShaderResources(0, 1, &texture);		//color texture
 
 //#ifdef DEFERRED_RENDERING
 
-	deviceContext->PSSetShaderResources(1, 1, &normaltexture);//normal texture
+	deviceContext->PSSetShaderResources(1, 1, &normaltexture);	//normal texture
+	//deviceContext->PSSetShaderResources(1, 1, &colortexture);	//position texture
+	//deviceContext->PSSetShaderResources(1, 1, &speculartexture);	//specular texture
 
 //#endif // DEFERRED_RENDERING
 

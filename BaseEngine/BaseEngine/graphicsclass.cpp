@@ -349,7 +349,8 @@ bool GraphicsClass::DeferredRender(float rotation)
 	//Clear the Screen
 	m_D3D->BeginScene(0.5f, 0.5f, 0.5f, 1.0f);		//Which calls the Clear color function
 
-	
+	//Call the 2nd Render Texture
+
 
 	m_Camera->Render();
 

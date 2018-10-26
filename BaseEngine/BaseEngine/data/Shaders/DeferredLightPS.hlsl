@@ -77,7 +77,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     lightColor = float3(1.0f,1.0f,1.0f);
     objectColor = shaderTexture.Sample(SampleType,input.tex);
 	normals = normalTexture.Sample(SampleType, input.tex);
-    return float4(normals.xyz,1.0f);
+    return float4(objectColor.xyz,1.0f);
     //Ambient
     float ambientStrength = 0.1;
     float3 ambient = ambientStrength * ambientColor;
@@ -89,7 +89,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     float diff = max(dot(normals,lightDir),0.0);
     diffuse = diff * lightColor;
 
-    color = float4(diffuse * float3(0.5f,0.5f,0.5f),1.0f);
+   // color = float4(diffuse * float3(0.5f,0.5f,0.5f),1.0f);
 
     return color;
     //specular
