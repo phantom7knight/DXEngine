@@ -158,12 +158,15 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 
 	//We set the  color and the light direction
 	m_Light->SetDiffuseColor(1.0f, 0.0f, 1.0f, 1.0f);
-	m_Light->SetDirection(0.0f, 0.0f, 1.0f);
-	m_Light->SetAmbientColor(1.0f, 0.0f, 0.0f, 1.0f);
-	m_Light->SetSpecularColor(0.0f, 0.021f, 0.23F, 1.0f);
+	//m_Light->SetDirection(0.0f, 0.0f, 1.0f);
+	m_Light->SetDirection(LightPos.x, LightPos.y, LightPos.z);
+	m_Light->SetAmbientColor(1.0f, 1.0f, 0.0f, 1.0f);
+	m_Light->SetSpecularColor(0.22f, 0.021f, 0.23F, 1.0f);
 	m_Light->SetSpecularPower(32.0f);
-	//m_Light->SetDirection(LightPos.x, LightPos.y, LightPos.z);
 	
+	//ImguiManager::getInstance()->Init(hwnd, m_D3D->GetDevice(), m_D3D->GetDeviceContext());
+
+
 
 	return true;
 }
@@ -234,12 +237,12 @@ void GraphicsClass::Shutdown()
 	return;
 }
 
-bool GraphicsClass::Frame(HWND handle)
+bool GraphicsClass::Frame()
 {
 	bool result = false;
 	static float rotation = 0.0f;
 
-	rotation += (float)PI_ *0.00051f;
+	rotation += (float)PI_ *0.0051f;
 
 	if (rotation > 360.0f)
 	{
@@ -275,8 +278,7 @@ bool GraphicsClass::Frame(HWND handle)
 #pragma endregion*/
 
 	
-	ImguiManager::getInstance()->Init(handle, m_D3D->GetDevice(), m_D3D->GetDeviceContext());
-
+	
 
 #ifdef DEFERRED_RENDERING
 	

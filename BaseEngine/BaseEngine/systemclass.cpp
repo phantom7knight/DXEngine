@@ -7,7 +7,7 @@ SystemClass::SystemClass()
 	m_Input = 0;
 	m_Camera = 0;
 	m_Graphics = 0;
-	LightPos = XMFLOAT3(1.0f, 0.0f, 0.0f);
+	LightPos = XMFLOAT3(-1.0f, 0.0f, 5.0f);
 }
 
 SystemClass::SystemClass(const SystemClass& other)
@@ -51,6 +51,7 @@ bool SystemClass::Initialize()
 	{
 		return false;
 	}
+
 
 	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd, LightPos);
 	if (!result)
@@ -98,7 +99,7 @@ void SystemClass::Run()
 	while (!done)
 	{
 
-		m_Graphics->Update();
+		//m_Graphics->Update();
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
@@ -159,11 +160,23 @@ bool SystemClass::Frame( HWND handle)
 	}
 #pragma endregion
 	
-	result = m_Graphics->Frame(handle);
+	/*if (m_Input->IsKeyDown(VK_NUMPAD4))
+	{
+		LightPos.x -= 0.0f;
+		std::cout << " 4 Pressed!" << std::endl;
+	}*/
+
+
+
+	result = m_Graphics->Frame();
 	if (!result)
 	{
 		return false;
 	}
+	
+	
+	//ImguiManager::getInstance()->Update();
+	
 	return true;
 }
 

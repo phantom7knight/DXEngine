@@ -9,6 +9,12 @@
 
 //===============================================
 
+
+#include <iostream>
+#include <stdlib.h>
+
+
+
 //Library includes
 
 #pragma comment(lib, "d3d11.lib")
