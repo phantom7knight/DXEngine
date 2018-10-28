@@ -65,7 +65,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	//float4 texturecolor;
 	float3  lightDir;
 	float   lightIntensity;
-    float3  lightColor;
+    float3  lightColor = float3(1.0f,1.0f,1.0f);
 	float4  color;
 	float4  objectColor;
 	float3  reflection;
@@ -74,20 +74,40 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     float3  diffuse;
     float3  viewdir;
 
-    lightColor = float3(1.0f,1.0f,1.0f);
-    objectColor = shaderTexture.Sample(SampleType,input.tex);
-	normals = normalTexture.Sample(SampleType, input.tex);
-    return float4(objectColor.xyz,1.0f);
-    //Ambient
-    float ambientStrength = 0.1;
+    int width  = 800;
+    int height = 600;
+
+
+ 
+    float2 simpletex = float2(input.position.x/width,input.position.y/height);
+
+    objectColor = shaderTexture.Sample(SampleType,simpletex);
+	normals     = normalTexture.Sample(SampleType, simpletex);
+
+    float ambientStrength = 0.87;
     float3 ambient = ambientStrength * ambientColor;
-   // return float4(ambient,1.0f) * objectColor;
-    
-    //Diffuse
-    normals = normalize(input.normal);
+
+    normals = normalize(normals);
     lightDir = normalize(lightDirection);
     float diff = max(dot(normals,lightDir),0.0);
     diffuse = diff * lightColor;
+
+    return  objectColor * float4(ambient,1.0f);
+    
+
+    //objectColor = shaderTexture.Sample(SampleType,input.tex);
+	//normals = normalTexture.Sample(SampleType, input.tex);
+    //return float4(objectColor.xyz,1.0f);
+    //Ambient
+   // float ambientStrength = 0.1;
+  //  float3 ambient = ambientStrength * ambientColor;
+   // return float4(ambient,1.0f) * objectColor;
+    
+    //Diffuse
+  // normals = normalize(input.normal);
+  // lightDir = normalize(lightDirection);
+  // float diff = max(dot(normals,lightDir),0.0);
+  // diffuse = diff * lightColor;
 
    // color = float4(diffuse * float3(0.5f,0.5f,0.5f),1.0f);
 

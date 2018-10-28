@@ -7,7 +7,7 @@ SystemClass::SystemClass()
 	m_Input = 0;
 	m_Camera = 0;
 	m_Graphics = 0;
-	LightPos = XMFLOAT3(+1.0f, 0.0f, 0.0f);
+	LightPos = XMFLOAT3(0.0f, 0.0f, 0.0f);
 }
 
 SystemClass::SystemClass(const SystemClass& other)
