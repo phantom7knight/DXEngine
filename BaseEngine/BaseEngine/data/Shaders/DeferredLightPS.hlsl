@@ -45,7 +45,7 @@ struct PixelInputType
 {
 	
 	float4 position		: SV_POSITION;
-	float3 CameraPos    : PPOSITIONT;
+	float3 CameraPos    : PPOSITIONT0;
     float4 fragPos      : PPOSITIONT1;
 };
 
@@ -89,7 +89,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
     //Specular
     float specular_strength = 0.6;
-    float3 viewdir = normalize(lightPosition - input.fragPos.xyz);
+    float3 viewdir = normalize(input.CameraPos - input.fragPos.xyz);
     float3 reflectdir = reflect(-LightDir,Normals); 
     float spec = pow(max(dot(viewdir,reflectdir),0.0),32);
     float4 specular = specular_strength * spec * float4(1.0f,1.0f,1.0f,1.0f);

@@ -40,7 +40,7 @@ struct PixelInputType
 {
 	
 	float4 position		: SV_POSITION;
-	float3 CameraPos    : PPOSITIONT;
+	float3 CameraPos    : PPOSITIONT0;
     float4 fragPos      : PPOSITIONT1;
 
 };
