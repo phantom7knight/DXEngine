@@ -69,31 +69,40 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	float4  color;
 	float4  objectColor;
 	float3  reflection;
-	float3  specular;
+	float4  specular;
 	float3  normals;
-    float3  diffuse;
+    float4  diffuse;
     float3  viewdir;
 
     int width  = 800;
     int height = 600;
 
-
  
     float2 simpletex = float2(input.position.x/width,input.position.y/height);
 
     objectColor = shaderTexture.Sample(SampleType,simpletex);
-	normals     = normalTexture.Sample(SampleType, simpletex);
+	normals     = normalTexture.Sample(SampleType, simpletex).xyz;
+	color		= shaderTexture.Sample(SampleType, input.tex);
+
+
 
     float ambientStrength = 0.87;
-    float3 ambient = ambientStrength * ambientColor;
+    float4 ambient = ambientStrength * ambientColor;
 
     normals = normalize(normals);
     lightDir = normalize(lightDirection);
     float diff = max(dot(normals,lightDir),0.0);
-    diffuse = diff * lightColor;
+    diffuse = float4(diff * lightColor,1.0f);
 
-    return  objectColor * float4(ambient,1.0f);
-    
+	float specularstrength = 0.5;
+	viewdir = input.viewDirection;
+	reflection = reflect(-lightDir, normals);
+	float spec = pow(max(dot(viewdir, reflection), 0.0), specularPower);
+	specular = float4(specularstrength * spec * lightColor,1.0f);
+	float4 resu = ambient + diffuse + specular;
+
+	return  	(resu) * diffuseColor;
+	
 
     //objectColor = shaderTexture.Sample(SampleType,input.tex);
 	//normals = normalTexture.Sample(SampleType, input.tex);
@@ -111,45 +120,46 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
    // color = float4(diffuse * float3(0.5f,0.5f,0.5f),1.0f);
 
-    return color;
-    //specular
-    float specularstrength = 0.5;
-    viewdir = input.viewDirection;
-    reflection = reflect(-lightDir , normals);
-    float spec = pow(max(dot(viewdir ,reflection),0.0),specularPower);
-    specular = specularstrength * spec * lightColor;
+    //return color;
 
-    color = float4((ambient + diffuse + specular) * objectColor,1.0f);
-    return color;
+    //specular
+    //float specularstrength = 0.5;
+    //viewdir = input.viewDirection;
+    //reflection = reflect(-lightDir , normals);
+    //float spec = pow(max(dot(viewdir ,reflection),0.0),specularPower);
+    //specular = specularstrength * spec * lightColor;
+
+    //color = float4((ambient + diffuse + specular) * objectColor,1.0f);
+    //return color;
     //=================================================================
     //Working Deferred Lighting
     //=================================================================
 
 	//For color render target
-	color = shaderTexture.Sample(SampleType,input.tex);
-    
-	//return color;
-	
-	//For the normal render target
-	normals = normalTexture.Sample(SampleType,input.tex);
-    
-
-	lightDir = -lightDirection;
-
-	lightIntensity = saturate(dot(normals.xyz,lightDir));
-
-    color = saturate(color * lightIntensity);
-    
-    
-    //   // color += (diffuseColor * lightIntensity);
-    //   // color = saturate(color);
-    //reflection = reflect((2 * lightIntensity * normals.xyz ) ,- lightDir);
-    //specular  = pow(max(dot(input.viewDirection ,reflection),0.0),specularPower);
-
-    //color = color * specular * 0.5;
-   
-    return float4(ambient,1.0f);
-
+	//color = shaderTexture.Sample(SampleType,input.tex);
+    //
+	////return color;
+	//
+	////For the normal render target
+	//normals = normalTexture.Sample(SampleType,input.tex);
+    //
+	//
+	//lightDir = -lightDirection;
+	//
+	//lightIntensity = saturate(dot(normals.xyz,lightDir));
+	//
+    //color = saturate(color * lightIntensity);
+    //
+    //
+    ////   // color += (diffuseColor * lightIntensity);
+    ////   // color = saturate(color);
+    ////reflection = reflect((2 * lightIntensity * normals.xyz ) ,- lightDir);
+    ////specular  = pow(max(dot(input.viewDirection ,reflection),0.0),specularPower);
+	//
+    ////color = color * specular * 0.5;
+   	//
+    //return float4(ambient,1.0f);
+	//
     
 	//=================================================================
 	//Unlock this for the specular light

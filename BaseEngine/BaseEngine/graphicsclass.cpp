@@ -317,7 +317,7 @@ bool GraphicsClass::FirstPass(float rotation)
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_D3D->GetProjectionMatrix(projectionMatrix);
 
-	worldMatrix = XMMatrixRotationY(rotation);	//same as model matrix
+	//worldMatrix = XMMatrixRotationY(rotation);	//same as model matrix
 
 	m_Model->Render(m_D3D->GetDeviceContext());
 
