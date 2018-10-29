@@ -59,7 +59,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 {
 
 	
-    float4 ObjectColor;
+    float4 ObjectPosition;
     float3 Normals;
 
 
@@ -69,18 +69,25 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
  
     float2 simpletex = float2(input.position.x/width,input.position.y/height);
 
-    ObjectColor = positionTexture.Sample(SampleType,simpletex);
+    ObjectPosition = positionTexture.Sample(SampleType,simpletex);
 	Normals     = normalTexture.Sample(SampleType, simpletex).xyz;
             
 
+    float4 light_Color = float4(1.0f,1.0f,1.0f,1.0f);
 
-
+    //Ambient
     float ambientStrength = 0.87;
-    float4 ambient = ambientStrength * ambientColor;
+    float4 ambient = ambientStrength * light_Color;
 
+    //Diffuse
+    Normals = normalize(Normals);
+    float3 LightDir = normalize(lightPosition - input.fragPos);
+    float diff = max(dot(Normals,LightDir),0.0f);
+    float4 diffuse = diff * float4(1.0f,1.0f,1.0f,1.0f);
 
+    float4 result = (ambient + diffuse);
 
-    return ambient;
+    return result;
                                                                                       
 
 }
