@@ -448,8 +448,7 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 //#endif // FWD_RENDERDING
 
 	lightPtr->lightDirection	= lightDirection;
-	//lightPtr->padding = 0.0f;
-
+	
 	deviceContext->Unmap(m_lightbuffer, 0);
 
 	bufferNumber = 0;

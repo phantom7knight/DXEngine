@@ -99,9 +99,9 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 	reflection = reflect(-lightDir, normals);
 	float spec = pow(max(dot(viewdir, reflection), 0.0), specularPower);
 	specular = float4(specularstrength * spec * lightColor,1.0f);
-	float4 resu = ambient + diffuse + specular;
+	float4 resu = ambient + diffuse ;
 
-	return  	(resu) * diffuseColor;
+	return  saturate(resu) * diffuseColor;
 	
 
     //objectColor = shaderTexture.Sample(SampleType,input.tex);
@@ -131,7 +131,8 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
     //color = float4((ambient + diffuse + specular) * objectColor,1.0f);
     //return color;
-    //=================================================================
+    
+	//=================================================================
     //Working Deferred Lighting
     //=================================================================
 
