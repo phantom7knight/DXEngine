@@ -19,7 +19,7 @@ struct PixelOutputType
 {
 	float4   gposition		: SV_Target0;
 	float4   gnormal		: SV_Target1;
-    //float4 gcolor			: SV_Target2;
+    float4   gcolor			: SV_Target2;
     //float4 gSpecularcolor : SV_Target3;
 };
 
@@ -31,7 +31,7 @@ PixelOutputType DeferredPixelShader(PixelInputType input) //: SV_TARGET0
     //This gives the Color for Render Target 0
     output.gposition = (input.fragPos);
 
-    //output.gcolor = shaderTexture.Sample(SampleTypeWrap, input.tex);
+    output.gcolor = shaderTexture.Sample(SampleTypeWrap, input.tex);
 
     //This is for the Normal Render Target
 	output.gnormal = float4(input.normal,1.0f);

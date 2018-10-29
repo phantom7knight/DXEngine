@@ -1,6 +1,6 @@
 #pragma once
 
-#define Buffer_Count 2
+#define Buffer_Count 3
 
 class DeferredBuffersClass
 {

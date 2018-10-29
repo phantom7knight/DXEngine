@@ -69,7 +69,7 @@ bool LightShaderClass::FWD_Render(ID3D11DeviceContext* deviceContext, int indexC
 	bool result;
 
 	result = SetShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix, texture,
-		lightDirection, diffuseColor, ambientColor, cameraPostion, specularColor, specularPower,NULL);
+		lightDirection, diffuseColor, ambientColor, cameraPostion, specularColor, specularPower,NULL,NULL);
 
 	if (!result)
 	{
@@ -93,12 +93,12 @@ bool LightShaderClass::FWD_Render(ID3D11DeviceContext* deviceContext, int indexC
 bool LightShaderClass::Render(ID3D11DeviceContext* deviceContext, int indexCount, XMMATRIX worldMatrix, XMMATRIX viewMatrix, XMMATRIX projectionMatrix, ID3D11ShaderResourceView* texture,
 	XMFLOAT3 lightDirection, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
 	XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower,
-	ID3D11ShaderResourceView* normaltexture)
+	ID3D11ShaderResourceView* normaltexture, ID3D11ShaderResourceView* colortexture)
 {
 	bool result;
 
 	result = SetShaderParameters(deviceContext, worldMatrix, viewMatrix, projectionMatrix, texture,
-		lightDirection,diffuseColor, ambientColor, cameraPostion, specularColor, specularPower, normaltexture);
+		lightDirection, diffuseColor, ambientColor, cameraPostion, specularColor, specularPower, normaltexture, colortexture);
 
 	if (!result)
 	{
@@ -363,7 +363,7 @@ void LightShaderClass::OutputShaderErrorMessage(ID3D10Blob* errorMessage, HWND h
 bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMatrix, XMMATRIX viewMatrix, XMMATRIX projectionMatrix, ID3D11ShaderResourceView* texture,
 								XMFLOAT3 lightPosition, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
 								XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower,
-								ID3D11ShaderResourceView* normaltexture)
+								ID3D11ShaderResourceView* normaltexture,ID3D11ShaderResourceView* colortexture)
 {
 	HRESULT result;
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
@@ -398,8 +398,8 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 //#ifdef DEFERRED_RENDERING
 
 	deviceContext->PSSetShaderResources(1, 1, &normaltexture);	//normal texture
-	//deviceContext->PSSetShaderResources(1, 1, &colortexture);	//position texture
-	//deviceContext->PSSetShaderResources(1, 1, &speculartexture);	//specular texture
+	deviceContext->PSSetShaderResources(2, 1, &colortexture);	//position texture
+	//deviceContext->PSSetShaderResources(3, 1, &speculartexture);	//specular texture
 
 //#endif // DEFERRED_RENDERING
 

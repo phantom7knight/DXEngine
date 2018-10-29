@@ -373,7 +373,7 @@ bool GraphicsClass::DeferredRender(float rotation)
 
 	 m_LightShader->Render(m_D3D->GetDeviceContext(), m_ScreenQuad->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
 		m_DeferredBuffer->GetShaderResourceView(0), m_Light->GetLightPosition(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
-		m_Light->GetSpecularColor(), m_Light->GetSpecularPower(),m_DeferredBuffer->GetShaderResourceView(1));
+		m_Light->GetSpecularColor(), m_Light->GetSpecularPower(),m_DeferredBuffer->GetShaderResourceView(1),m_DeferredBuffer->GetShaderResourceView(2));
 
 	/*if (!result)
 		return false;*/

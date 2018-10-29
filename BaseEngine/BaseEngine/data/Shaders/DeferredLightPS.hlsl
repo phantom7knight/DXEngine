@@ -7,11 +7,11 @@
 
 Texture2D positionTexture : register(t0);	//position Texture
 Texture2D normalTexture : register(t1);     //Normal Texture
+Texture2D DiffuseTexture  : register(t2);   //Diffuse Texture
 
 //============================================
 //TO DO :Add other textures for project
-//Texture2D specularTexture : register(t2);   //Specular Texture
-//Texture2D DiffuseTexture  : register(t3);   //Diffuse Texture
+//Texture2D specularTexture : register(t3);   //Specular Texture
 //============================================
 
 
@@ -60,6 +60,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
 	
     float4 ObjectPosition;
+    float3 objectColor;
     float3 Normals;
 
 
@@ -69,8 +70,9 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
  
     float2 simpletex = float2(input.position.x/width,input.position.y/height);
 
-    ObjectPosition = positionTexture.Sample(SampleType,simpletex);
-	Normals     = normalTexture.Sample(SampleType, simpletex).xyz;
+    ObjectPosition  = positionTexture.Sample(SampleType,simpletex);
+	Normals         = normalTexture.Sample(SampleType, simpletex).xyz;
+    objectColor     = DiffuseTexture.Sample(SampleType,simpletex).xyz;
             
 
     float4 light_Color = float4(1.0f,1.0f,1.0f,1.0f);
@@ -81,11 +83,19 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
     //Diffuse
     Normals = normalize(Normals);
-    float3 LightDir = normalize(lightPosition - input.fragPos);
+    float3 LightDir = normalize(lightPosition - input.fragPos.xyz);
     float diff = max(dot(Normals,LightDir),0.0f);
     float4 diffuse = diff * float4(1.0f,1.0f,1.0f,1.0f);
 
-    float4 result = (ambient + diffuse);
+    //Specular
+    float specular_strength = 0.6;
+    float3 viewdir = normalize(lightPosition - input.fragPos.xyz);
+    float3 reflectdir = reflect(-LightDir,Normals); 
+    float spec = pow(max(dot(viewdir,reflectdir),0.0),32);
+    float4 specular = specular_strength * spec * float4(1.0f,1.0f,1.0f,1.0f);
+
+
+    float4 result = (ambient + diffuse + specular) * float4(objectColor,1.0f);
 
     return result;
                                                                                       

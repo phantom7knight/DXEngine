@@ -74,7 +74,7 @@ public:
 	bool Render(ID3D11DeviceContext*, int, XMMATRIX, XMMATRIX, XMMATRIX, ID3D11ShaderResourceView*,
 				XMFLOAT3 lightDirection, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
 				XMFLOAT3 cameraPostion,XMFLOAT4 specularColor,float specularPower,
-				ID3D11ShaderResourceView* normaltexture);
+				ID3D11ShaderResourceView* normaltexture, ID3D11ShaderResourceView* colortexture);
 
 	bool FWD_Render(ID3D11DeviceContext* deviceContext, int indexCount, XMMATRIX worldMatrix, XMMATRIX viewMatrix, XMMATRIX projectionMatrix, ID3D11ShaderResourceView* texture,
 				XMFLOAT3 lightDirection, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
@@ -88,7 +88,7 @@ private:
 
 	bool SetShaderParameters(ID3D11DeviceContext*, XMMATRIX, XMMATRIX, XMMATRIX, ID3D11ShaderResourceView*, XMFLOAT3 lightDirection, 
 					XMFLOAT4 diffuseColor,XMFLOAT4 ambientColor, XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower,
-					ID3D11ShaderResourceView* normaltexture);
+					ID3D11ShaderResourceView* normaltexture, ID3D11ShaderResourceView* colortexture);
 	void RenderShader(ID3D11DeviceContext*, int);
 
 	ID3D11VertexShader* m_vertexShader;
