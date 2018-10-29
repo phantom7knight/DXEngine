@@ -40,9 +40,8 @@ struct PixelInputType
 {
 	
 	float4 position		: SV_POSITION;
-	float2 tex			: TEXCOORD0;
-	float3 normal		: NORMAL;
-	float3 viewDirection: TEXCOORD1;
+	float3 CameraPos    : PPOSITIONT;
+    float4 fragPos      : PPOSITIONT1;
 
 };
 
@@ -56,20 +55,14 @@ PixelInputType LightVertexShader(VertexInputType input)
 	input.position.w = 1.0f;
 
 	output.position = mul(input.position ,  worldMatrix);
+    output.fragPos = input.position;
 	output.position = mul(output.position , viewMatrix);
 	output.position = mul(output.position , projectionMatrix);
 	
-	output.tex = input.tex;
+    output.CameraPos = cameraPostion; 
     
 
-	output.normal = mul(input.normal, (float3x3)worldMatrix);
-	output.normal = normalize(output.normal);
-
-    //For Specular Color Calculation
-	worldPostion = mul(input.position , worldMatrix);
-	output.viewDirection = cameraPostion.xyz - worldPostion.xyz;
-
-	output.viewDirection = normalize(output.viewDirection);
+	
 										 
 	return output;
 

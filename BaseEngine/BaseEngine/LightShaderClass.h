@@ -28,7 +28,7 @@ class LightShaderClass
 
 			XMFLOAT4 ambientColor;
 			XMFLOAT4 diffuseColor;
-			XMFLOAT3 lightDirection;
+			XMFLOAT3 lightPosition;
 			float	 specularPower;
 			XMFLOAT4 specularColor;
 		

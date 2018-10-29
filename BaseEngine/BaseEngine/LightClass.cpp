@@ -36,7 +36,7 @@ void LightClass::SetSpecularColor(float red, float green, float blue, float alph
 	return;
 }
 
-void LightClass::SetDirection(float X, float Y, float Z)
+void LightClass::SetLightPosition(float X, float Y, float Z)
 {
 	m_direction = XMFLOAT3(X, Y, Z);
 
@@ -53,7 +53,7 @@ XMFLOAT4 LightClass::GetDiffuseColor()
 	return m_diffusecolor;
 }
 
-XMFLOAT3 LightClass::GetDirection()
+XMFLOAT3 LightClass::GetLightPosition()
 {
 	return m_direction;
 }

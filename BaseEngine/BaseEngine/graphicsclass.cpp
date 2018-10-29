@@ -159,7 +159,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, XMF
 	//We set the  color and the light direction
 	m_Light->SetDiffuseColor(1.0f, 0.0f, 1.0f, 1.0f);
 	//m_Light->SetDirection(0.0f, 0.0f, 1.0f);
-	m_Light->SetDirection(LightPos.x, LightPos.y, LightPos.z);
+	m_Light->SetLightPosition(LightPos.x, LightPos.y, LightPos.z);
 	m_Light->SetAmbientColor(1.0f, 1.0f, 0.0f, 1.0f);
 	m_Light->SetSpecularColor(0.22f, 0.021f, 0.23F, 1.0f);
 	m_Light->SetSpecularPower(32.0f);
@@ -323,7 +323,7 @@ bool GraphicsClass::FirstPass(float rotation)
 
 	//Check this
 	m_DeferredShader->Render(m_D3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
-					 m_Model->GetTexture(), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), 
+					 m_Model->GetTexture(), m_Light->GetLightPosition(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(),
 					 m_Camera->GetPosition(), m_Light->GetSpecularColor(), m_Light->GetSpecularPower());
 
 
@@ -372,7 +372,7 @@ bool GraphicsClass::DeferredRender(float rotation)
 	//m_Model->Render(m_D3D->GetDeviceContext());
 
 	 m_LightShader->Render(m_D3D->GetDeviceContext(), m_ScreenQuad->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,
-		m_DeferredBuffer->GetShaderResourceView(0), m_Light->GetDirection(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
+		m_DeferredBuffer->GetShaderResourceView(0), m_Light->GetLightPosition(), m_Light->GetDiffuseColor(), m_Light->GetAmbientColor(), m_Camera->GetPosition(),
 		m_Light->GetSpecularColor(), m_Light->GetSpecularPower(),m_DeferredBuffer->GetShaderResourceView(1));
 
 	/*if (!result)

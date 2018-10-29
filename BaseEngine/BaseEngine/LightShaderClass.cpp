@@ -361,7 +361,7 @@ void LightShaderClass::OutputShaderErrorMessage(ID3D10Blob* errorMessage, HWND h
 }
 
 bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, XMMATRIX worldMatrix, XMMATRIX viewMatrix, XMMATRIX projectionMatrix, ID3D11ShaderResourceView* texture,
-								XMFLOAT3 lightDirection, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
+								XMFLOAT3 lightPosition, XMFLOAT4 diffuseColor, XMFLOAT4 ambientColor,
 								XMFLOAT3 cameraPostion, XMFLOAT4 specularColor, float specularPower,
 								ID3D11ShaderResourceView* normaltexture)
 {
@@ -447,7 +447,7 @@ bool LightShaderClass::SetShaderParameters(ID3D11DeviceContext* deviceContext, X
 
 //#endif // FWD_RENDERDING
 
-	lightPtr->lightDirection	= lightDirection;
+	lightPtr->lightPosition = lightPosition;
 	
 	deviceContext->Unmap(m_lightbuffer, 0);
 
