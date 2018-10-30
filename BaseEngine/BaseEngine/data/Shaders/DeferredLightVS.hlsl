@@ -42,6 +42,7 @@ struct PixelInputType
 	float4 position		: SV_POSITION;
 	float3 CameraPos    : PPOSITIONT0;
     float4 fragPos      : PPOSITIONT1;
+	float2 tex			: TEXCOORD0;
 
 };
 
@@ -58,6 +59,7 @@ PixelInputType LightVertexShader(VertexInputType input)
     output.fragPos = input.position;
 	output.position = mul(output.position , viewMatrix);
 	output.position = mul(output.position , projectionMatrix);
+	output.tex = input.tex;
 	
     output.CameraPos = cameraPostion; 
     

@@ -47,6 +47,7 @@ struct PixelInputType
 	float4 position		: SV_POSITION;
 	float3 CameraPos    : PPOSITIONT0;
     float4 fragPos      : PPOSITIONT1;
+	float2 tex			: TEXCOORD0;
 };
 
 
@@ -64,15 +65,15 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     float3 Normals;
 
 
-    int width  = 800;
-    int height = 600;
+	 int width  = 800;
+	 int height = 600;
 
  
     float2 simpletex = float2(input.position.x/width,input.position.y/height);
 
-    ObjectPosition  = positionTexture.Sample(SampleType,simpletex);
-	Normals         = normalTexture.Sample(SampleType, simpletex).xyz;
-    objectColor     = DiffuseTexture.Sample(SampleType,simpletex).xyz;
+    ObjectPosition  = positionTexture.Sample(SampleType,input.tex);
+	Normals         = normalTexture.Sample(SampleType, input.tex).xyz;
+    objectColor     = DiffuseTexture.Sample(SampleType, input.tex).xyz;
             
 
     float4 light_Color = float4(1.0f,1.0f,1.0f,1.0f);
@@ -83,15 +84,15 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
     //Diffuse
     Normals = normalize(Normals);
-    float3 LightDir = normalize(lightPosition - input.fragPos.xyz);
+    float3 LightDir = normalize(lightPosition - ObjectPosition);
     float diff = max(dot(Normals,LightDir),0.0f);
     float4 diffuse = diff * float4(1.0f,1.0f,1.0f,1.0f);
 
     //Specular
     float specular_strength = 0.6;
-    float3 viewdir = normalize(input.CameraPos - input.fragPos.xyz);
+    float3 viewdir = normalize(input.CameraPos - ObjectPosition.xyz);
     float3 reflectdir = reflect(-LightDir,Normals); 
-    float spec = pow(max(dot(viewdir,reflectdir),0.0),32);
+    float spec = pow(max(dot(viewdir,reflectdir),0.0),16);
     float4 specular = specular_strength * spec * float4(1.0f,1.0f,1.0f,1.0f);
 
 

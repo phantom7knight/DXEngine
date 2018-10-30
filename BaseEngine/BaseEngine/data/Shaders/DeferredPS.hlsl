@@ -31,7 +31,7 @@ PixelOutputType DeferredPixelShader(PixelInputType input) //: SV_TARGET0
     //This gives the Color for Render Target 0
     output.gposition = (input.fragPos);
 
-    output.gcolor = shaderTexture.Sample(SampleTypeWrap, input.tex);
+	output.gcolor = float4(1.0f, 0.5f, 0.5f, 1.0f);// shaderTexture.Sample(SampleTypeWrap, input.tex);
 
     //This is for the Normal Render Target
 	output.gnormal = float4(input.normal,1.0f);
