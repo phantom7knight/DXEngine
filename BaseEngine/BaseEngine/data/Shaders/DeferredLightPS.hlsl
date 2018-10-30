@@ -93,10 +93,10 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     float3 viewdir = normalize(input.CameraPos - ObjectPosition.xyz);
     float3 reflectdir = reflect(-LightDir,Normals); 
     float spec = pow(max(dot(viewdir,reflectdir),0.0),16);
-    float4 specular = specular_strength * spec * float4(1.0f,1.0f,1.0f,1.0f);
+    float4 specular =  spec * float4(1.0f,1.0f,1.0f,1.0f);
 
 
-    float4 result = (ambient + diffuse + specular) * float4(objectColor,1.0f);
+	float4 result = (ambient + diffuse + specular) * float4(objectColor, 1.0f);
 
     return result;
                                                                                       
