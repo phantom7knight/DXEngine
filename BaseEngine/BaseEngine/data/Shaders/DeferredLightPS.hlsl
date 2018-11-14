@@ -76,7 +76,7 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
     objectColor     = DiffuseTexture.Sample(SampleType, input.tex).xyz;
             
 
-    float4 light_Color = float4(1.0f,1.0f,1.0f,1.0f);
+    float4 light_Color = float4(0.5f,0.5f,0.5f,1.0f);
 
     //Ambient
     float ambientStrength = 0.87;
@@ -84,19 +84,22 @@ float4 LightPixelShader(PixelInputType input) : SV_TARGET
 
     //Diffuse
     Normals = normalize(Normals);
-    float3 LightDir = normalize(lightPosition - ObjectPosition);
+    float3 LightDir = normalize(lightPosition - ObjectPosition.xyz);
     float diff = max(dot(Normals,LightDir),0.0f);
-    float4 diffuse = diff * float4(1.0f,1.0f,1.0f,1.0f);
+    float4 diffuse = diff * light_Color;
 
     //Specular
-    float specular_strength = 0.6;
+    float specular_strength     = 0.5;
+    float specular_intensity    = 64;
     float3 viewdir = normalize(input.CameraPos - ObjectPosition.xyz);
     float3 reflectdir = reflect(-LightDir,Normals); 
-    float spec = pow(max(dot(viewdir,reflectdir),0.0),16);
-    float4 specular =  spec * float4(1.0f,1.0f,1.0f,1.0f);
+    float spec = pow(max(dot(viewdir,reflectdir),0.0),specular_intensity);
+    float4 specular = specular_strength *  spec * light_Color;
 
 
 	float4 result = (ambient + diffuse + specular) * float4(objectColor, 1.0f);
+
+   // return float4(Normals,1.0f);
 
     return result;
                                                                                       
